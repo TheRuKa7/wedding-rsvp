@@ -68,11 +68,11 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
   }
 
   return (
-    <section id="rsvp" className="relative px-6 py-28 sm:py-36">
+    <section id="rsvp" className="section-pad relative px-6">
       <LazyMotion features={domAnimation}>
         <div className="mx-auto mb-10 max-w-xl text-center">
           <p className="font-script text-xl text-saffron">आपका स्वागत है</p>
-          <h2 className="mt-2 font-display text-4xl text-red sm:text-6xl">Will you be there?</h2>
+          <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">Will you be there?</h2>
           <MotifDivider className="mt-6" />
         </div>
 
@@ -285,7 +285,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                     <p className="mt-1 font-display text-2xl text-ink">
                       Your invitation card is on its way
                     </p>
-                    <p className="mt-1 text-sm uppercase tracking-[0.25em] text-gold">
+                    <p className="mt-1 text-sm uppercase tracking-[0.25em] text-gold-deep">
                       Coming soon
                     </p>
                   </div>

@@ -4,7 +4,7 @@ import { ChinarLeaf, PhulkariFlower, MotifDivider } from "./motifs";
 
 export default function Story() {
   return (
-    <section id="story" className="relative mx-auto max-w-3xl px-6 py-28 text-center sm:py-36">
+    <section id="story" className="section-pad relative mx-auto max-w-3xl px-6 text-center">
       <Reveal>
         <div className="mb-6 flex items-center justify-center gap-4 text-gold">
           <ChinarLeaf className="h-8 w-8" />
@@ -14,7 +14,7 @@ export default function Story() {
 
       <Reveal delay={80}>
         <p className="font-script text-xl text-saffron">{story.hindi}</p>
-        <h2 className="mt-2 font-display text-4xl text-red sm:text-6xl">{story.title}</h2>
+        <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">{story.title}</h2>
       </Reveal>
 
       <div className="mt-10 space-y-7">

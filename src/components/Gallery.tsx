@@ -9,7 +9,7 @@ import { couple, moments } from "@/lib/content";
 */
 export default function Gallery() {
   return (
-    <section id="gallery" className="relative px-6 py-24 sm:py-32">
+    <section id="gallery" className="section-pad relative px-6">
       <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2 sm:gap-14">
         <Reveal className="order-2 sm:order-1 text-center sm:text-left">
           <h2 className="font-display text-4xl text-red sm:text-5xl">{moments.title}</h2>
@@ -21,7 +21,7 @@ export default function Gallery() {
         </Reveal>
 
         <Reveal delay={120} className="order-1 sm:order-2">
-          <div className="relative mx-auto w-full max-w-xs sm:max-w-sm">
+          <div className="float-soft relative mx-auto w-full max-w-xs sm:max-w-sm">
             <div className="overflow-hidden rounded-t-[160px] rounded-b-[28px] border border-gold/45 p-2 shadow-card">
               <div
                 className="overflow-hidden rounded-t-[152px] rounded-b-[22px]"

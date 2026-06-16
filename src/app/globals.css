@@ -14,6 +14,7 @@
   --color-marigold: #f2a900;
   --color-gold: #c9a227;
   --color-gold-soft: #e2c878;
+  --color-gold-deep: #836310; /* accessible gold for small text on cream */
   --color-ink: #2b1a12;
   --color-ink-soft: #5b4636;
   --color-pine: #1f5c4d;
@@ -50,6 +51,19 @@ h3 {
   letter-spacing: 0.01em;
 }
 
+/* Accessible keyboard focus everywhere. */
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Consistent, tighter vertical rhythm for sections. */
+.section-pad {
+  padding-top: clamp(3.5rem, 9vw, 6rem);
+  padding-bottom: clamp(3.5rem, 9vw, 6rem);
+}
+
 h1,
 h2,
 h3,
@@ -65,12 +79,11 @@ h3,
 .gold-foil {
   background: linear-gradient(
     100deg,
-    #b8860b 0%,
-    #e2c878 22%,
-    #fff4cf 38%,
-    #c9a227 55%,
-    #e2c878 72%,
-    #9a7b15 100%
+    #6e520c 0%,
+    #a9810f 26%,
+    #e7c873 50%,
+    #a9810f 74%,
+    #6e520c 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -90,6 +103,21 @@ h3,
 .reveal-init {
   opacity: 0;
   transform: translateY(28px);
+}
+
+/* Gentle continuous float for feature imagery. */
+.float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Thin gold rule used as a section divider. */

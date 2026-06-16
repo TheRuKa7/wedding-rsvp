@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { couple, wedding } from "@/lib/content";
+import { markGateOpen } from "@/lib/gate";
 import { HexagonMonogram, OmMark } from "./motifs";
 
 type Phase = "loading" | "ready" | "opening" | "open";
+const SEEN_KEY = "invitation-opened";
 
 /**
  * The site opens like an invitation card. A brief loading beat, then a warm
@@ -15,8 +17,11 @@ export default function InvitationGate() {
   const [phase, setPhase] = useState<Phase>("loading");
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const alreadySeen = sessionStorage.getItem(SEEN_KEY) === "1";
+    if (reduced || alreadySeen) {
       setPhase("open");
+      markGateOpen();
       return;
     }
     document.body.style.overflow = "hidden";
@@ -26,6 +31,8 @@ export default function InvitationGate() {
 
   function open() {
     setPhase("opening");
+    sessionStorage.setItem(SEEN_KEY, "1");
+    markGateOpen();
     setTimeout(() => {
       setPhase("open");
       document.body.style.overflow = "";
@@ -37,7 +44,11 @@ export default function InvitationGate() {
   const parting = phase === "opening";
 
   return (
-    <div className="fixed inset-0 z-[100]" aria-hidden={phase === "opening"}>
+    <div
+      className={`fixed inset-0 z-[100] ${phase === "ready" ? "cursor-pointer" : ""}`}
+      aria-hidden={phase === "opening"}
+      onClick={phase === "ready" ? open : undefined}
+    >
       {/* two panels that part to the sides */}
       {(["left", "right"] as const).map((side) => (
         <div

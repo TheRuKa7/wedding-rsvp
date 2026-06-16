@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { couple, wedding, saveTheDate } from "@/lib/content";
+import { onGateOpen } from "@/lib/gate";
 import { OmMark, MotifDivider } from "./motifs";
 
 export default function Hero() {
@@ -12,25 +13,32 @@ export default function Hero() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let ctx: gsap.Context;
     let cleanup = () => {};
+    let cancelled = false;
 
-    (async () => {
-      const { SplitText } = await import("gsap/SplitText");
-      gsap.registerPlugin(SplitText);
-      ctx = gsap.context(() => {
-        const names = root.current?.querySelectorAll<HTMLElement>("[data-split]") ?? [];
-        const splits = Array.from(names).map((el) => new SplitText(el, { type: "chars" }));
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-        tl.from("[data-fade]", { opacity: 0, y: 18, duration: 0.9, stagger: 0.12 })
-          .from(
-            splits.flatMap((s) => s.chars),
-            { opacity: 0, yPercent: 120, rotateX: -40, duration: 1, stagger: 0.035 },
-            "-=0.4",
-          );
-        cleanup = () => splits.forEach((s) => s.revert());
-      }, root);
-    })();
+    // wait for the invitation to be opened, so the name reveal isn't wasted behind the gate
+    const stop = onGateOpen(() => {
+      (async () => {
+        const { SplitText } = await import("gsap/SplitText");
+        if (cancelled) return;
+        gsap.registerPlugin(SplitText);
+        ctx = gsap.context(() => {
+          const names = root.current?.querySelectorAll<HTMLElement>("[data-split]") ?? [];
+          const splits = Array.from(names).map((el) => new SplitText(el, { type: "chars" }));
+          const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+          tl.from("[data-fade]", { opacity: 0, y: 18, duration: 0.9, stagger: 0.12 })
+            .from(
+              splits.flatMap((s) => s.chars),
+              { opacity: 0, yPercent: 120, rotateX: -40, duration: 1, stagger: 0.035 },
+              "-=0.4",
+            );
+          cleanup = () => splits.forEach((s) => s.revert());
+        }, root);
+      })();
+    });
 
     return () => {
+      cancelled = true;
+      stop();
       cleanup();
       ctx?.revert();
     };

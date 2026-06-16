@@ -4,7 +4,7 @@ import { MotifDivider, ChinarLeaf, PhulkariFlower } from "./motifs";
 
 export default function ComingSoon() {
   return (
-    <section id="details" className="relative px-6 py-24 sm:py-32">
+    <section id="details" className="section-pad relative px-6">
       <Reveal className="mx-auto max-w-2xl">
         <div className="relative overflow-hidden rounded-[32px] border border-gold/40 bg-cream-deep/30 px-8 py-14 text-center sm:px-14">
           {/* faint corner motifs */}
@@ -17,7 +17,7 @@ export default function ComingSoon() {
             {comingSoon.body}
           </p>
           <MotifDivider className="mt-8" />
-          <span className="mt-6 inline-block rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.28em] text-gold">
+          <span className="mt-6 inline-block rounded-full border border-gold/60 px-5 py-2 text-xs uppercase tracking-[0.28em] text-gold-deep">
             {comingSoon.badge}
           </span>
         </div>

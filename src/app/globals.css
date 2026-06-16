@@ -117,6 +117,58 @@ h3,
   }
 }
 
+/* Border motion graphics: a gentle shimmer on the painted frame, and a gold light
+   that travels around the inner edge of the card. */
+.ornate-frame {
+  animation: frame-breathe 9s ease-in-out infinite;
+}
+@keyframes frame-breathe {
+  0%,
+  100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.07) saturate(1.08);
+  }
+}
+
+@property --frame-ang {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.frame-glow {
+  position: fixed;
+  inset: 22px;
+  z-index: 41;
+  border-radius: 14px;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--frame-ang),
+    rgba(255, 244, 200, 0) 0deg,
+    rgba(255, 244, 200, 0) 240deg,
+    rgba(255, 244, 200, 0.85) 300deg,
+    rgba(201, 162, 39, 0.25) 332deg,
+    rgba(255, 244, 200, 0) 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: frame-spin 7s linear infinite;
+}
+@media (min-width: 768px) {
+  .frame-glow {
+    inset: 50px;
+    border-radius: 12px;
+  }
+}
+@keyframes frame-spin {
+  to {
+    --frame-ang: 360deg;
+  }
+}
+
 /* Custom cursor: hide the native pointer only on fine-pointer devices. */
 @media (hover: hover) and (pointer: fine) {
   .cursor-none,

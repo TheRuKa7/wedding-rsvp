@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { couple } from "@/lib/content";
 import Reveal from "./Reveal";
 import { MotifDivider } from "./motifs";
 
@@ -41,6 +43,15 @@ export default function Countdown() {
     <section className="section-pad relative px-6">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
+          <div className="float-soft mx-auto mb-8 w-40 overflow-hidden rounded-[120px_120px_18px_18px] border border-gold/45 p-1.5 shadow-card sm:w-48">
+            <Image
+              src="/ghibli-3.webp"
+              alt={`${couple.bride.first} and ${couple.groom.first}, illustrated`}
+              width={896}
+              height={1200}
+              className="h-auto w-full rounded-[114px_114px_12px_12px] object-cover"
+            />
+          </div>
           <p className="font-script text-2xl text-saffron-deep">गिनती शुरू</p>
           <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">The countdown is on</h2>
           <p className="mx-auto mt-3 max-w-md text-ink/80">

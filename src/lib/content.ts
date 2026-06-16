@@ -26,6 +26,12 @@ export const saveTheDate = {
   note: "A formal invitation will follow.",
 } as const;
 
+// The invitation is hosted by the bride's parents (this RSVP gathers their guest list).
+export const hosts = {
+  parents: "Atul & Rita Suri",
+  inviteLine: "request the pleasure of your company at the wedding of their beloved daughter",
+} as const;
+
 export const story = {
   title: "Two families, one celebration",
   hindi: "शुभ विवाह",
@@ -38,7 +44,7 @@ export const story = {
 export const comingSoon = {
   hindi: "जल्द ही",
   title: "We are still planning the fun parts",
-  body: "The events, the timings and all the little details are coming together beautifully. We will share the full itinerary with you soon. The one thing we would love to know now is whether you will be there.",
+  body: "The events, the timings and all the little details are coming together beautifully. We will share the full itinerary with you very soon.",
   badge: "Itinerary coming soon",
 } as const;
 

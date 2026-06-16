@@ -30,7 +30,9 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [extras, setExtras] = useState<Extra[]>(
-    prelisted.slice(1).map((g) => ({ name: g.name, age_band: (g.age_band as Extra["age_band"]) ?? "adult" })),
+    prelisted.length > 1
+      ? prelisted.slice(1).map((g) => ({ name: g.name, age_band: (g.age_band as Extra["age_band"]) ?? "adult" }))
+      : [{ name: "", age_band: "adult" }], // one visible field by default so adding guests is obvious
   );
   const [meal, setMeal] = useState("No preference");
   const [notes, setNotes] = useState("");
@@ -207,7 +209,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                         onClick={addExtra}
                         className="mt-3 w-full rounded-xl border border-dashed border-gold/60 py-2.5 text-sm font-medium text-red transition-colors hover:bg-cream-deep/40"
                       >
-                        + Add a guest by name
+                        + Add another guest
                       </button>
                     )}
                   </div>

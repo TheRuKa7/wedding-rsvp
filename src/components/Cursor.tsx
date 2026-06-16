@@ -31,7 +31,12 @@ export default function Cursor() {
     const over = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
       const interactive = !!t.closest("a, button, input, textarea, select, label, [role='button']");
-      if (ring.current) ring.current.dataset.hover = interactive ? "1" : "0";
+      // over interactive elements the native pointer shows, so hide the custom dot/ring
+      if (dot.current) dot.current.style.opacity = interactive ? "0" : "1";
+      if (ring.current) {
+        ring.current.style.opacity = interactive ? "0" : "1";
+        ring.current.dataset.hover = interactive ? "1" : "0";
+      }
     };
     const loop = () => {
       rx += (x - rx) * 0.2;

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { couple, wedding, saveTheDate } from "@/lib/content";
+import { couple, wedding, saveTheDate, hosts } from "@/lib/content";
 import { onGateOpen } from "@/lib/gate";
 import { media } from "@/lib/media";
 import AmbientVideo from "./AmbientVideo";
@@ -82,11 +82,14 @@ export default function Hero() {
         <p className="font-script text-2xl text-red sm:text-3xl">{saveTheDate.invocation}</p>
       </div>
 
+      <p data-fade className="mt-8 font-display text-2xl text-ink sm:text-3xl">
+        {hosts.parents}
+      </p>
       <p
         data-fade
-        className="mt-8 max-w-md text-[13px] uppercase tracking-[0.25em] text-ink-soft sm:text-sm"
+        className="mt-2 max-w-md text-[12px] uppercase tracking-[0.22em] text-ink-soft sm:text-[13px]"
       >
-        {saveTheDate.intro}
+        {hosts.inviteLine}
       </p>
 
       <h1 className="mt-5 flex flex-col items-center leading-[0.92]">
@@ -121,8 +124,7 @@ export default function Hero() {
         {wedding.venueCity}
       </p>
       <p data-fade className="mt-5 max-w-md text-base leading-relaxed text-ink/80">
-        The full itinerary will follow very soon. For now, please save our dates and tell us you
-        can come.
+        The full itinerary will follow soon.
       </p>
 
       <a

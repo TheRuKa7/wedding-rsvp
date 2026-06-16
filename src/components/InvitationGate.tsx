@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { couple, wedding } from "@/lib/content";
+import { couple, wedding, hosts } from "@/lib/content";
 import { markGateOpen } from "@/lib/gate";
 import { media } from "@/lib/media";
 import { HexagonMonogram } from "./motifs";
@@ -93,8 +93,9 @@ export default function InvitationGate() {
           <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
 
           <div className="my-7 flex flex-col items-center">
-            <span className="text-[11px] uppercase tracking-[0.3em] text-ink/80">
-              Together with our families
+            <span className="font-display text-lg text-ink sm:text-xl">{hosts.parents}</span>
+            <span className="mt-1 text-[10px] uppercase tracking-[0.28em] text-ink/75">
+              invite you to the wedding of their daughter
             </span>
             <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
               {couple.bride.first} <span className="font-script text-saffron-deep">&amp;</span>{" "}

@@ -24,11 +24,11 @@ const script = Tiro_Devanagari_Hindi({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stuti-weds-rushil.example.com"),
-  title: "Stuti & Rushil · 27–28 February 2027",
+  title: "Stuti with Rushil · 27–28 February 2027",
   description:
     "With joyful hearts, save the dates for the wedding of Stuti Suri and Rushil Kaul, 27 to 28 February 2027. Two valleys, one vow. Kindly RSVP.",
   openGraph: {
-    title: "Stuti & Rushil · 27–28 February 2027",
+    title: "Stuti with Rushil · 27–28 February 2027",
     description: "Two valleys, one vow. Punjab meets Kashmir. Save the dates and RSVP.",
     type: "website",
   },

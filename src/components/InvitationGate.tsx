@@ -98,8 +98,8 @@ export default function InvitationGate() {
               invite you to the wedding of their daughter
             </span>
             <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
-              {couple.bride.first} <span className="font-script text-saffron-deep">&amp;</span>{" "}
-              {couple.groom.first}
+              {couple.bride.first}{" "}
+              <span className="font-script text-saffron-deep">with</span> {couple.groom.first}
             </h1>
             <span className="mt-3 text-sm tracking-[0.2em] text-ink/80">{wedding.dates}</span>
             <span className="mt-1 text-xs uppercase tracking-[0.22em] text-ink-soft">

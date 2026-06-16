@@ -17,7 +17,7 @@ export default function Footer() {
         <OmMark className="text-3xl text-gold-soft" />
         <p className="mt-3 font-script text-2xl text-gold-soft">शुभ विवाह</p>
         <p className="mt-4 font-display text-4xl">
-          {couple.bride.first} &amp; {couple.groom.first}
+          {couple.bride.first} with {couple.groom.first}
         </p>
         <p className="mt-2 text-sm tracking-[0.2em] text-cream/85">{wedding.dates}</p>
         <p className="mt-3 font-display text-xl text-gold-soft">{wedding.venue}</p>

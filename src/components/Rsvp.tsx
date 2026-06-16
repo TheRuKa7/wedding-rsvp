@@ -15,36 +15,46 @@ type Party = {
   guests: PrelistedGuest[];
 } | null;
 
-type Extra = { name: string; age_band: "adult" | "child" | "infant" };
+type Age = "adult" | "child" | "infant";
+type Guest = { name: string; age_band: Age };
+
+const AGES: { v: Age; label: string }[] = [
+  { v: "adult", label: "Adult" },
+  { v: "child", label: "Child" },
+  { v: "infant", label: "Infant" },
+];
 
 const card =
   "relative mx-auto max-w-xl rounded-[28px] border border-gold/40 bg-cream p-7 shadow-card sm:p-10";
+const fieldInput =
+  "mt-1.5 w-full rounded-xl border border-gold/40 bg-cream-deep/25 px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink-soft/50 focus:border-red";
 
 export default function Rsvp({ token, party }: { token: string | null; party: Party }) {
   const prelisted = party?.guests ?? [];
   const [phase, setPhase] = useState<"ask" | "form" | "done">("ask");
   const [attending, setAttending] = useState(true);
 
-  // primary + extras seeded from a pre-listed household when available
   const [primaryName, setPrimaryName] = useState(prelisted[0]?.name ?? "");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [extras, setExtras] = useState<Extra[]>(
+
+  // Additional people in the party (you are counted separately via your name above).
+  const [guests, setGuests] = useState<Guest[]>(
     prelisted.length > 1
-      ? prelisted.slice(1).map((g) => ({ name: g.name, age_band: (g.age_band as Extra["age_band"]) ?? "adult" }))
-      : [{ name: "", age_band: "adult" }], // one visible field by default so adding guests is obvious
+      ? prelisted.slice(1).map((g) => ({ name: g.name, age_band: (g.age_band as Age) ?? "adult" }))
+      : [],
   );
+
   const [meal, setMeal] = useState("No preference");
   const [notes, setNotes] = useState("");
-
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<{ attending: boolean; count: number } | null>(null);
 
-  const addExtra = () => setExtras((e) => [...e, { name: "", age_band: "adult" }]);
-  const setExtra = (i: number, patch: Partial<Extra>) =>
-    setExtras((e) => e.map((x, idx) => (idx === i ? { ...x, ...patch } : x)));
-  const removeExtra = (i: number) => setExtras((e) => e.filter((_, idx) => idx !== i));
+  const addGuest = () => setGuests((g) => [...g, { name: "", age_band: "adult" }]);
+  const patchGuest = (i: number, p: Partial<Guest>) =>
+    setGuests((g) => g.map((x, idx) => (idx === i ? { ...x, ...p } : x)));
+  const removeGuest = (i: number) => setGuests((g) => g.filter((_, idx) => idx !== i));
 
   async function onSubmit() {
     setError(null);
@@ -54,17 +64,13 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
       attending,
       meal,
       notes,
-      // events aren't shown yet; an "attending" guest is recorded across the 2 days
       events: [...ALL_EVENT_SLUGS],
       primary: { name: primaryName, email, phone, age_band: "adult" },
-      companions: extras,
+      companions: guests.filter((g) => g.name.trim()),
     };
     const res = await submitRsvp(input);
     setBusy(false);
-    if (!res.ok) {
-      setError(res.error);
-      return;
-    }
+    if (!res.ok) return setError(res.error);
     setResult({ attending: res.attending, count: res.guestCount });
     setPhase("done");
   }
@@ -78,7 +84,6 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
           <MotifDivider className="mt-6" />
         </div>
 
-        {/* ornamental corners */}
         <AnimatePresence mode="wait">
           {phase === "ask" && (
             <m.div
@@ -93,8 +98,8 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                 {party?.display_name ? (
                   <>
                     Dear{" "}
-                    <span className="font-display text-2xl text-red">{party.display_name}</span>,
-                    it would mean so much to have you with us.
+                    <span className="font-display text-2xl text-red">{party.display_name}</span>, it
+                    would mean so much to have you with us.
                   </>
                 ) : (
                   <>It would mean the world to us to have you there.</>
@@ -131,134 +136,159 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
               exit={{ opacity: 0, y: -16 }}
               className={card}
             >
-              <Field label="Your full name">
+              <label className="block">
+                <span className="text-sm font-medium text-ink">Your full name</span>
                 <input
-                  className={inputCls}
+                  className={fieldInput}
                   value={primaryName}
                   onChange={(e) => setPrimaryName(e.target.value)}
                   placeholder="e.g. Aarav Sharma"
                   autoComplete="name"
                 />
-              </Field>
+              </label>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Field label="Email" hint="so we never count you twice">
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">
+                    Email <span className="font-normal text-ink-soft">· optional</span>
+                  </span>
                   <input
-                    className={inputCls}
+                    className={fieldInput}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@email.com"
                     inputMode="email"
                     autoComplete="email"
                   />
-                </Field>
-                <Field label="Phone" hint="so we never count you twice">
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink">
+                    Phone <span className="font-normal text-ink-soft">· optional</span>
+                  </span>
                   <input
-                    className={inputCls}
+                    className={fieldInput}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+91 …"
                     inputMode="tel"
                     autoComplete="tel"
                   />
-                </Field>
+                </label>
               </div>
+              {attending && (
+                <p className="mt-2 text-xs text-ink-soft">
+                  Email or phone helps us make sure no one is counted twice.
+                </p>
+              )}
 
               {attending && (
                 <>
-                  {/* family members */}
-                  <div className="mt-3">
-                    <p className="text-base font-medium text-ink">Who is coming with you?</p>
+                  <div className="mt-6">
+                    <p className="text-base font-medium text-ink">Who else is coming with you?</p>
                     <p className="mt-1 text-sm text-ink-soft">
-                      {prelisted.length > 1
-                        ? "We have added your family below. Please add or remove anyone so the names are just right."
-                        : "Add everyone joining you by name, so we can save a seat for each of them."}
+                      You are already counted. Add each family member or friend below by name.
                     </p>
-                    <ul className="mt-4 space-y-2">
-                      {extras.map((x, i) => (
-                        <li key={i} className="flex items-center gap-2">
+
+                    <ul className="mt-4 space-y-3">
+                      {guests.map((g, i) => (
+                        <li
+                          key={i}
+                          className="rounded-2xl border border-gold/40 bg-cream-deep/15 p-3"
+                        >
                           <input
-                            className={`${inputCls} flex-1`}
-                            value={x.name}
-                            onChange={(e) => setExtra(i, { name: e.target.value })}
-                            placeholder="Their full name"
+                            className="w-full rounded-lg border border-gold/40 bg-cream px-4 py-3 text-base text-ink outline-none transition-colors placeholder:text-ink-soft/55 focus:border-red"
+                            value={g.name}
+                            onChange={(e) => patchGuest(i, { name: e.target.value })}
+                            placeholder={`Guest ${i + 1} — full name`}
                           />
-                          <select
-                            className={`${inputCls} w-24`}
-                            value={x.age_band}
-                            onChange={(e) =>
-                              setExtra(i, { age_band: e.target.value as Extra["age_band"] })
-                            }
-                          >
-                            <option value="adult">Adult</option>
-                            <option value="child">Child</option>
-                            <option value="infant">Infant</option>
-                          </select>
-                          <button
-                            onClick={() => removeExtra(i)}
-                            className="px-2 text-red-deep"
-                            aria-label="Remove"
-                          >
-                            ✕
-                          </button>
+                          <div className="mt-2.5 flex items-center justify-between gap-2">
+                            <div className="flex gap-1.5">
+                              {AGES.map((a) => (
+                                <button
+                                  key={a.v}
+                                  type="button"
+                                  onClick={() => patchGuest(i, { age_band: a.v })}
+                                  className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+                                    g.age_band === a.v
+                                      ? "border-pine bg-pine text-cream"
+                                      : "border-gold/50 text-ink-soft hover:border-pine"
+                                  }`}
+                                >
+                                  {a.label}
+                                </button>
+                              ))}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => removeGuest(i)}
+                              className="text-sm text-red-deep/80 hover:text-red-deep"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </li>
                       ))}
                     </ul>
+
                     {(party?.allow_companions ?? true) && (
                       <button
-                        onClick={addExtra}
-                        className="mt-3 w-full rounded-xl border border-dashed border-gold/60 py-2.5 text-sm font-medium text-red transition-colors hover:bg-cream-deep/40"
+                        type="button"
+                        onClick={addGuest}
+                        className="mt-3 w-full rounded-xl border border-dashed border-gold/60 py-3 font-display text-lg text-red transition-colors hover:bg-cream-deep/40"
                       >
-                        + Add another guest
+                        {guests.length === 0 ? "+ Add a guest" : "+ Add another guest"}
                       </button>
                     )}
                   </div>
 
-                  <Field label="Meal preference" hint="optional, it just helps us plan">
-                    <div className="flex flex-wrap gap-2">
-                      {["Vegetarian", "Non-vegetarian", "Jain", "No preference"].map((m) => (
+                  <div className="mt-6">
+                    <span className="text-sm font-medium text-ink">
+                      Meal preference{" "}
+                      <span className="font-normal text-ink-soft">· optional</span>
+                    </span>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {["Vegetarian", "Non-vegetarian", "Jain", "No preference"].map((mm) => (
                         <button
-                          key={m}
+                          key={mm}
                           type="button"
-                          onClick={() => setMeal(m)}
+                          onClick={() => setMeal(mm)}
                           className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-                            meal === m
+                            meal === mm
                               ? "border-pine bg-pine text-cream"
                               : "border-gold/50 text-ink-soft hover:border-pine"
                           }`}
                         >
-                          {m}
+                          {mm}
                         </button>
                       ))}
                     </div>
-                  </Field>
+                  </div>
                 </>
               )}
 
-              <Field
-                label={attending ? "A little note for us (optional)" : "Leave us a message"}
-              >
+              <label className="mt-6 block">
+                <span className="text-sm font-medium text-ink">
+                  {attending ? "A little note for us" : "Leave us a message"}{" "}
+                  <span className="font-normal text-ink-soft">· optional</span>
+                </span>
                 <textarea
-                  className={`${inputCls} min-h-20`}
+                  className={`${fieldInput} min-h-20`}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder={attending ? "We are so happy for you both!" : "Sending you all my love."}
                 />
-              </Field>
+              </label>
 
               {error && <p className="mt-3 text-sm text-red-deep">{error}</p>}
 
               <div className="mt-6 flex items-center justify-between">
-                <button
-                  onClick={() => setPhase("ask")}
-                  className="text-sm text-ink-soft hover:text-red"
-                >
+                <button onClick={() => setPhase("ask")} className="text-sm text-ink-soft hover:text-red">
                   Back
                 </button>
                 <button
                   onClick={onSubmit}
-                  disabled={busy}
-                  className="rounded-full bg-red px-8 py-3 font-display text-lg text-cream transition-transform hover:scale-[1.03] disabled:opacity-60"
+                  disabled={busy || !primaryName.trim()}
+                  className="rounded-full bg-red px-8 py-3 font-display text-lg text-cream transition-transform hover:scale-[1.03] disabled:opacity-50"
                 >
                   {busy ? "Sending…" : "Send my RSVP"}
                 </button>
@@ -279,8 +309,8 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                   <h3 className="mt-4 font-display text-4xl text-red">We can&apos;t wait!</h3>
                   <p className="mt-3 text-ink/85">
                     Thank you, we have saved your spot
-                    {result.count > 1 ? ` for all ${result.count} of you` : ""}. It truly makes
-                    us so happy.
+                    {result.count > 1 ? ` for all ${result.count} of you` : ""}. It truly makes us
+                    so happy.
                   </p>
                   <p className="mt-3 text-sm text-ink/80">
                     See you at {wedding.venue}, {wedding.venueCity}.
@@ -299,11 +329,11 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                 <>
                   <h3 className="mt-4 font-display text-4xl text-red">We&apos;ll miss you</h3>
                   <p className="mt-3 text-ink/85">
-                    We are sad you can&apos;t be with us, but thank you for letting us know. You
-                    will be in our hearts on the day.
+                    We are sad you can&apos;t be with us, but thank you for letting us know. You will
+                    be in our hearts on the day.
                   </p>
                   <p className="mt-4 font-script text-xl text-saffron-deep">
-                    {couple.bride.first} &amp; {couple.groom.first}
+                    {couple.bride.first} with {couple.groom.first}
                   </p>
                 </>
               )}
@@ -312,28 +342,5 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
         </AnimatePresence>
       </LazyMotion>
     </section>
-  );
-}
-
-const inputCls =
-  "mt-1 w-full rounded-xl border border-gold/40 bg-cream-deep/30 px-4 py-2.5 text-ink outline-none transition-colors placeholder:text-ink-soft/50 focus:border-red";
-
-function Field({
-  label,
-  hint,
-  children,
-}: {
-  label: string;
-  hint?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="mt-4 block">
-      <span className="text-sm font-medium text-ink">
-        {label}
-        {hint && <span className="ml-2 text-xs font-normal text-ink-soft">· {hint}</span>}
-      </span>
-      {children}
-    </label>
   );
 }

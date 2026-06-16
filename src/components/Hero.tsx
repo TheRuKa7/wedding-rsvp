@@ -100,7 +100,7 @@ export default function Hero() {
           {couple.bride.first}
         </span>
         <span data-fade className="font-script my-1 text-3xl text-saffron-deep sm:text-4xl">
-          &amp;
+          with
         </span>
         <span
           data-name

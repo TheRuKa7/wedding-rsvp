@@ -104,13 +104,6 @@ h3,
   );
 }
 
-/* Custom cursor only on devices that actually have a hovering pointer. */
-@media (hover: hover) and (pointer: fine) {
-  .cursor-fine-hide {
-    cursor: none;
-  }
-}
-
 /* No-motion-first: honor Reduce Motion everywhere. */
 @media (prefers-reduced-motion: reduce) {
   html {

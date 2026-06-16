@@ -1,6 +1,5 @@
 import SmoothScroll from "@/components/SmoothScroll";
 import InvitationGate from "@/components/InvitationGate";
-import Cursor from "@/components/Cursor";
 import Petals from "@/components/Petals";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
@@ -23,7 +22,6 @@ export default async function Page({
   return (
     <>
       <InvitationGate />
-      <Cursor />
       <Petals />
       <Nav />
       <SmoothScroll>

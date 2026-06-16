@@ -25,11 +25,11 @@ export const saveTheDate = {
 } as const;
 
 export const story = {
-  title: "How we found each other",
-  hindi: "हमारी कहानी",
+  title: "Two families, one celebration",
+  hindi: "शुभ विवाह",
   paragraphs: [
-    "Stuti grew up with the colour and warmth of a Punjabi home. Rushil grew up with the quiet beauty of Kashmir. Somewhere in between, we found each other, and it just felt like home.",
-    "Now we are bringing our two families together, and we would love for you to be right there with us when we do.",
+    "Stuti is Punjabi and Rushil is Kashmiri Pandit. We are bringing our two families and traditions together for two days of celebration.",
+    "We would love for you to be there with us. Please let us know you are coming.",
   ],
 } as const;
 

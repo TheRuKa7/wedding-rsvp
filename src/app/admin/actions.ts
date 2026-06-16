@@ -6,15 +6,22 @@ import { supabase } from "@/lib/supabase";
 
 const COOKIE = "admin_session";
 
+async function isValidSecret(secret: string | null | undefined): Promise<boolean> {
+  if (!secret) return false;
+  const { data, error } = await supabase.rpc("verify_admin_password", { p_secret: secret });
+  return !error && data === true;
+}
+
+/** Returns the admin secret from the cookie if it still verifies against the DB. */
 export async function currentSecret(): Promise<string | null> {
   const c = await cookies();
   const v = c.get(COOKIE)?.value ?? null;
-  return v && v === process.env.ADMIN_SECRET ? v : null;
+  return (await isValidSecret(v)) ? v : null;
 }
 
 export async function adminLogin(_prev: unknown, formData: FormData) {
   const secret = String(formData.get("secret") ?? "");
-  if (!secret || secret !== process.env.ADMIN_SECRET) {
+  if (!(await isValidSecret(secret))) {
     return { error: "Incorrect password." };
   }
   const c = await cookies();

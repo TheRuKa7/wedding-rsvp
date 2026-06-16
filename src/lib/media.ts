@@ -12,5 +12,5 @@ export const media: {
   heroVideo: "", // e.g. "/video/hero.mp4"
   gateVideo: "", // e.g. "/video/gate-open.mp4"
   footerVideo: "", // e.g. "/video/footer.mp4"
-  ganesha: "", // e.g. "/ganesha.webp"  (transparent line art)
+  ganesha: "/ganesha.webp", // gold line-art emblem (Higgsfield)
 };

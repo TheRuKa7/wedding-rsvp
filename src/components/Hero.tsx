@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { couple, wedding, saveTheDate } from "@/lib/content";
 import { onGateOpen } from "@/lib/gate";
+import { media } from "@/lib/media";
+import AmbientVideo from "./AmbientVideo";
 import { OmMark, MotifDivider } from "./motifs";
 
 export default function Hero() {
@@ -49,18 +51,32 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center"
     >
+      {/* optional ambient video, behind a cream veil so the names stay crisp */}
+      {media.heroVideo && (
+        <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>
+          <AmbientVideo src={media.heroVideo} className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-cream/70" />
+        </div>
+      )}
+
       {/* soft radial ground so petals read against the cream */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
-          background:
-            "radial-gradient(120% 90% at 50% 0%, #fff9ee 0%, var(--color-cream) 45%, var(--color-cream-deep) 100%)",
+          background: media.heroVideo
+            ? "radial-gradient(120% 90% at 50% 0%, rgba(255,249,238,0.6) 0%, rgba(251,244,230,0.35) 45%, rgba(243,231,207,0.2) 100%)"
+            : "radial-gradient(120% 90% at 50% 0%, #fff9ee 0%, var(--color-cream) 45%, var(--color-cream-deep) 100%)",
         }}
         aria-hidden
       />
 
       <div className="flex flex-col items-center gap-2" data-fade>
-        <OmMark className="text-3xl text-saffron sm:text-4xl" />
+        {media.ganesha ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={media.ganesha} alt="" className="h-14 w-auto opacity-90" aria-hidden />
+        ) : (
+          <OmMark className="text-3xl text-saffron sm:text-4xl" />
+        )}
         <p className="font-script text-2xl text-red sm:text-3xl">{saveTheDate.invocation}</p>
       </div>
 

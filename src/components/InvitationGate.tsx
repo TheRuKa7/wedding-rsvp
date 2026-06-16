@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { couple, wedding } from "@/lib/content";
 import { markGateOpen } from "@/lib/gate";
+import { media } from "@/lib/media";
+import AmbientVideo from "./AmbientVideo";
 import { HexagonMonogram, OmMark } from "./motifs";
 
 type Phase = "loading" | "ready" | "opening" | "open";
@@ -75,7 +77,19 @@ export default function InvitationGate() {
           parting ? "opacity-0" : "opacity-100"
         }`}
       >
-        <OmMark className="text-2xl text-saffron" />
+        {media.gateVideo && (
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+            <AmbientVideo src={media.gateVideo} className="h-full w-full object-cover opacity-30" />
+            <div className="absolute inset-0 bg-cream/55" />
+          </div>
+        )}
+
+        {media.ganesha ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={media.ganesha} alt="" className="h-12 w-auto opacity-90" aria-hidden />
+        ) : (
+          <OmMark className="text-2xl text-saffron" />
+        )}
         <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
 
         <div className="my-7 flex flex-col items-center">

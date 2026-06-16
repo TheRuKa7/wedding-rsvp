@@ -9,7 +9,7 @@ export const media: {
   footerVideo: string;
   ganesha: string;
 } = {
-  heroVideo: "", // e.g. "/video/hero.mp4"
+  heroVideo: "/video/hero.mp4", // Higgsfield ambient loop (Veo)
   gateVideo: "", // e.g. "/video/gate-open.mp4"
   footerVideo: "", // e.g. "/video/footer.mp4"
   ganesha: "/ganesha.webp", // gold line-art emblem (Higgsfield)

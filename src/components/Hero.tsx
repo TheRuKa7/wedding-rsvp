@@ -54,7 +54,11 @@ export default function Hero() {
       {/* optional ambient video, behind a cream veil so the names stay crisp */}
       {media.heroVideo && (
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>
-          <AmbientVideo src={media.heroVideo} className="h-full w-full object-cover" />
+          <AmbientVideo
+            src={media.heroVideo}
+            poster="/video/hero-poster.webp"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-cream/70" />
         </div>
       )}

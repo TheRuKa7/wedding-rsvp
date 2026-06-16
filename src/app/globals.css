@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/*
+  Stuti & Rushil — design tokens
+  Kashmiri restraint as the ground, Punjabi vibrance as the accent.
+  ~60% cream · 20% red · 12% saffron/marigold · 8% gold.
+*/
+@theme {
+  --color-cream: #fbf4e6;
+  --color-cream-deep: #f3e7cf;
+  --color-red: #a01d28;
+  --color-red-deep: #7d141d;
+  --color-saffron: #e8842b;
+  --color-marigold: #f2a900;
+  --color-gold: #c9a227;
+  --color-gold-soft: #e2c878;
+  --color-ink: #2b1a12;
+  --color-ink-soft: #5b4636;
+  --color-pine: #1f5c4d;
+  --color-rose: #c76b7e;
+
+  --font-display: var(--font-display), "Cormorant Garamond", serif;
+  --font-body: var(--font-body), system-ui, sans-serif;
+  --font-script: var(--font-script), serif;
+
+  --shadow-card: 0 30px 60px -28px rgba(43, 26, 18, 0.45);
+}
+
+:root {
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px base for comfortable reading */
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: 0.01em;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Gold-foil text fill — champagne→amber→gold gradient clipped to glyphs. */
+.gold-foil {
+  background: linear-gradient(
+    100deg,
+    #b8860b 0%,
+    #e2c878 22%,
+    #fff4cf 38%,
+    #c9a227 55%,
+    #e2c878 72%,
+    #9a7b15 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: foil-shimmer 7s linear infinite;
+}
+
+@keyframes foil-shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Reveal primitives — start state lives in CSS so SSR HTML is the LCP paint. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+/* Thin gold rule used as a section divider. */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+}
+
+/* Custom cursor only on devices that actually have a hovering pointer. */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-fine-hide {
+    cursor: none;
+  }
+}
+
+/* No-motion-first: honor Reduce Motion everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+  .gold-foil {
+    animation: none;
+  }
+}
+
+::selection {
+  background: var(--color-saffron);
+  color: var(--color-cream);
+}

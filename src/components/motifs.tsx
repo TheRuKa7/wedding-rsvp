@@ -1,0 +1,118 @@
+/*
+  Hand-drawn SVG motifs that braid the two traditions.
+  - HexagonMonogram: the Dejhoor six-point star (Shiva–Shakti union) = the couple's mark.
+  - ChinarLeaf: the signature Kashmiri emblem.
+  - PhulkariFlower: the radiant geometric Punjabi flower.
+  - MotifDivider: chinar ⟷ phulkari pairing — the heart of the blend.
+  Richer art (Ganesha line-art, papier-mâché borders) can be dropped into /public later
+  as Higgsfield-generated assets; these vector motifs carry the design until then.
+*/
+
+type SvgProps = React.SVGProps<SVGSVGElement>;
+
+export function HexagonMonogram({ className, ...props }: SvgProps) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden {...props}>
+      {/* two overlapping triangles — Shiva (down) + Shakti (up) */}
+      <path
+        d="M60 14 L99 82 L21 82 Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        opacity="0.9"
+      />
+      <path
+        d="M60 106 L21 38 L99 38 Z"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        opacity="0.9"
+      />
+      <circle cx="60" cy="60" r="54" stroke="currentColor" strokeWidth="0.8" opacity="0.55" />
+      <circle cx="60" cy="60" r="22" stroke="currentColor" strokeWidth="0.8" opacity="0.7" />
+    </svg>
+  );
+}
+
+export function ChinarLeaf({ className, ...props }: SvgProps) {
+  return (
+    <svg viewBox="0 0 100 110" fill="none" className={className} aria-hidden {...props}>
+      <path
+        d="M50 104 L50 58 M50 58 C50 40 38 30 24 22 M50 58 C50 40 62 30 76 22 M50 64 C42 56 28 54 14 56 M50 64 C58 56 72 54 86 56 M50 50 C46 42 36 38 30 40 M50 50 C54 42 64 38 70 40"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M50 8 C66 22 84 30 88 50 C90 64 78 74 64 70 C58 80 50 86 50 86 C50 86 42 80 36 70 C22 74 10 64 12 50 C16 30 34 22 50 8 Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        opacity="0.95"
+      />
+    </svg>
+  );
+}
+
+export function PhulkariFlower({ className, ...props }: SvgProps) {
+  const petals = Array.from({ length: 8 });
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden {...props}>
+      <g transform="translate(50 50)">
+        {petals.map((_, i) => (
+          <path
+            key={i}
+            d="M0 0 L7 -22 L0 -40 L-7 -22 Z"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            transform={`rotate(${i * 45})`}
+          />
+        ))}
+        <circle r="7" stroke="currentColor" strokeWidth="1.5" />
+        <circle r="44" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
+      </g>
+    </svg>
+  );
+}
+
+/** chinar ⟷ phulkari divider: leaf · flower · monogram · flower · leaf */
+export function MotifDivider({ className }: { className?: string }) {
+  return (
+    <div
+      className={`flex items-center justify-center gap-3 text-gold ${className ?? ""}`}
+      aria-hidden
+    >
+      <span className="h-px w-10 bg-current opacity-40 sm:w-20" />
+      <ChinarLeaf className="h-5 w-5 opacity-80" />
+      <PhulkariFlower className="h-4 w-4 opacity-70" />
+      <HexagonMonogram className="h-6 w-6" />
+      <PhulkariFlower className="h-4 w-4 opacity-70" />
+      <ChinarLeaf className="h-5 w-5 opacity-80" />
+      <span className="h-px w-10 bg-current opacity-40 sm:w-20" />
+    </div>
+  );
+}
+
+/** A single drifting marigold petal (used by the ambient petal layer). */
+export function Petal({ className, ...props }: SvgProps) {
+  return (
+    <svg viewBox="0 0 24 28" className={className} aria-hidden {...props}>
+      <path
+        d="M12 0 C19 7 22 16 12 28 C2 16 5 7 12 0 Z"
+        fill="currentColor"
+        opacity="0.9"
+      />
+      <path d="M12 4 L12 24" stroke="#fff" strokeWidth="0.6" opacity="0.4" />
+    </svg>
+  );
+}
+
+/** Auspicious Om mark for the invocation. */
+export function OmMark({ className, ...props }: SvgProps) {
+  return (
+    <span
+      className={`font-script leading-none ${className ?? ""}`}
+      aria-label="Om"
+      {...(props as React.HTMLAttributes<HTMLSpanElement>)}
+    >
+      ॐ
+    </span>
+  );
+}

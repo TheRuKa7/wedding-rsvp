@@ -31,12 +31,11 @@ export default function Gallery() {
                 }}
               >
                 <Image
-                  src="/couple.webp"
-                  alt={`${couple.bride.first} and ${couple.groom.first}`}
-                  width={1100}
-                  height={1231}
-                  priority
-                  className="mx-auto h-auto w-full select-none object-contain"
+                  src="/ghibli-1.webp"
+                  alt={`${couple.bride.first} and ${couple.groom.first}, illustrated`}
+                  width={896}
+                  height={1200}
+                  className="mx-auto h-auto w-full select-none object-cover"
                 />
               </div>
             </div>

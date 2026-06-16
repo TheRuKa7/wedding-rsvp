@@ -48,7 +48,7 @@ export default function Hero() {
   return (
     <section
       ref={root}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pb-16 pt-28 text-center sm:pt-32"
     >
       {media.heroVideo && (
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>

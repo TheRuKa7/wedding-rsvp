@@ -96,6 +96,40 @@ h3,
   animation: foil-shimmer 7s linear infinite;
 }
 
+/* Ornate illustrated card frame (border-image). Center is transparent so content
+   scrolls inside the frame; the painted ring stays fixed around the viewport. */
+.ornate-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 22px;
+  border-image-source: url("/border-mobile.webp");
+  border-image-slice: 100;
+  border-image-repeat: stretch;
+}
+@media (min-width: 768px) {
+  .ornate-frame {
+    border-width: 50px;
+    border-image-source: url("/border-desktop.webp");
+    border-image-slice: 90;
+  }
+}
+
+/* Custom cursor: hide the native pointer only on fine-pointer devices. */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-none,
+  .cursor-none * {
+    cursor: none !important;
+  }
+}
+.cursor-ring[data-hover="1"] {
+  width: 3.25rem;
+  height: 3.25rem;
+  background-color: rgba(201, 162, 39, 0.14);
+}
+
 /* Hero couple names: solid, high-contrast, with a faint regal gold edge. */
 .hero-name {
   text-shadow: 0 1px 0 rgba(201, 162, 39, 0.35), 0 2px 14px rgba(125, 20, 29, 0.12);

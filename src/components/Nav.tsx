@@ -17,8 +17,8 @@ export default function Nav() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-cream/85 shadow-[0_1px_0_rgba(201,162,39,0.3)] backdrop-blur-md" : ""
+      className={`fixed left-[22px] right-[22px] top-[22px] z-50 rounded-full transition-all duration-500 sm:left-[54px] sm:right-[54px] sm:top-[52px] ${
+        scrolled ? "bg-cream/90 shadow-[0_1px_0_rgba(201,162,39,0.3)] backdrop-blur-md" : ""
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">

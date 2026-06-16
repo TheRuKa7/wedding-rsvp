@@ -22,7 +22,7 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <a href="#top" className="flex items-center gap-2 text-red" aria-label="Home">
+        <a href="#top" className="flex items-center gap-2 text-red" title="Back to top">
           <HexagonMonogram className="h-7 w-7" />
           <span className="font-display text-lg tracking-wide">
             {couple.bride.first[0]}&nbsp;&amp;&nbsp;{couple.groom.first[0]}

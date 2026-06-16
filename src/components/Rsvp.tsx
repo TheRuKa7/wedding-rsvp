@@ -71,7 +71,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
     <section id="rsvp" className="section-pad relative px-6">
       <LazyMotion features={domAnimation}>
         <div className="mx-auto mb-10 max-w-xl text-center">
-          <p className="font-script text-xl text-saffron">आपका स्वागत है</p>
+          <p className="font-script text-xl text-saffron-deep">आपका स्वागत है</p>
           <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">Will you be there?</h2>
           <MotifDivider className="mt-6" />
         </div>
@@ -86,7 +86,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
               exit={{ opacity: 0, y: -16 }}
               className={`${card} text-center`}
             >
-              <OmMark className="text-3xl text-saffron" />
+              <OmMark className="text-3xl text-saffron-deep" />
               <p className="mt-3 text-lg leading-relaxed text-ink/85">
                 {party?.display_name ? (
                   <>
@@ -281,7 +281,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                     us so happy.
                   </p>
                   <div className="mt-6 rounded-2xl border border-dashed border-gold/60 bg-cream-deep/40 p-5">
-                    <p className="font-script text-lg text-saffron">शुभ विवाह</p>
+                    <p className="font-script text-lg text-saffron-deep">शुभ विवाह</p>
                     <p className="mt-1 font-display text-2xl text-ink">
                       Your invitation card is on its way
                     </p>
@@ -297,7 +297,7 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                     We are sad you can&apos;t be with us, but thank you for letting us know. You
                     will be in our hearts on the day.
                   </p>
-                  <p className="mt-4 font-script text-xl text-saffron">
+                  <p className="mt-4 font-script text-xl text-saffron-deep">
                     {couple.bride.first} &amp; {couple.groom.first}
                   </p>
                 </>

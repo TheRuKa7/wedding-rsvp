@@ -11,7 +11,7 @@ export default function ComingSoon() {
           <ChinarLeaf className="pointer-events-none absolute -left-3 -top-3 h-16 w-16 text-gold/20" />
           <PhulkariFlower className="pointer-events-none absolute -bottom-3 -right-3 h-16 w-16 text-gold/20" />
 
-          <p className="font-script text-2xl text-saffron">{comingSoon.hindi}</p>
+          <p className="font-script text-2xl text-saffron-deep">{comingSoon.hindi}</p>
           <h2 className="mt-3 font-display text-4xl text-red sm:text-5xl">{comingSoon.title}</h2>
           <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-ink/85">
             {comingSoon.body}

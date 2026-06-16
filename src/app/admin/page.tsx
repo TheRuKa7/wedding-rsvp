@@ -193,7 +193,7 @@ export default async function AdminPage() {
               <tr key={i} className="border-t border-gold/20">
                 <td className="p-3 font-medium">
                   {g.guest}
-                  {!g.is_approved && <span className="ml-2 text-xs text-saffron">pending</span>}
+                  {!g.is_approved && <span className="ml-2 text-xs text-saffron-deep">pending</span>}
                   {g.dedup_status === "candidate" && (
                     <span className="ml-2 text-xs text-red">dup?</span>
                   )}

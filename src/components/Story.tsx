@@ -13,7 +13,7 @@ export default function Story() {
       </Reveal>
 
       <Reveal delay={80}>
-        <p className="font-script text-xl text-saffron">{story.hindi}</p>
+        <p className="font-script text-xl text-saffron-deep">{story.hindi}</p>
         <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">{story.title}</h2>
       </Reveal>
 

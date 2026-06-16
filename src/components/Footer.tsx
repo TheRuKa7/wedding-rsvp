@@ -27,7 +27,7 @@ export default function Footer() {
           Travel and stay details will follow with the formal invitation. For anything at all,
           please reach out to our families directly.
         </p>
-        <p className="mt-6 text-xs uppercase tracking-[0.3em] text-cream/55">{wedding.hashtag}</p>
+        <p className="mt-6 text-xs uppercase tracking-[0.3em] text-gold-soft">{wedding.hashtag}</p>
       </div>
     </footer>
   );

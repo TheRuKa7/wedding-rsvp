@@ -3,29 +3,34 @@
 import { useEffect, useState } from "react";
 
 /**
- * Decorative looping background video. Renders nothing under Reduce Motion or if
- * the file fails to load, so the caller's static fallback always shows through.
+ * Decorative looping background video. Picks the desktop (16:9) or mobile (9:16)
+ * source for the current viewport. Renders nothing under Reduce Motion or if the
+ * file fails to load, so the caller's static fallback always shows through.
  */
 export default function AmbientVideo({
   src,
+  srcDesktop,
   className = "",
   poster,
 }: {
   src: string;
+  srcDesktop?: string;
   className?: string;
   poster?: string;
 }) {
-  const [show, setShow] = useState(false);
+  const [chosen, setChosen] = useState<string | null>(null);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    setShow(true);
-  }, []);
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    setChosen(isDesktop && srcDesktop ? srcDesktop : src);
+  }, [src, srcDesktop]);
 
-  if (!src || !show) return null;
+  if (!chosen) return null;
 
   return (
     <video
+      key={chosen}
       className={className}
       autoPlay
       muted
@@ -38,7 +43,7 @@ export default function AmbientVideo({
         (e.currentTarget as HTMLVideoElement).style.display = "none";
       }}
     >
-      <source src={src} type="video/mp4" />
+      <source src={chosen} type="video/mp4" />
     </video>
   );
 }

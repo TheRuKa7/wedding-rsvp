@@ -15,7 +15,7 @@ export default function Gallery() {
           <h2 className="font-display text-4xl text-red sm:text-5xl">{moments.title}</h2>
           <p className="mt-5 text-lg leading-relaxed text-ink/85">{moments.caption}</p>
           <MotifDivider className="mt-8 sm:justify-start" />
-          <p className="mt-5 font-script text-2xl text-saffron">
+          <p className="mt-5 font-script text-2xl text-saffron-deep">
             {couple.bride.first} &amp; {couple.groom.first}
           </p>
         </Reveal>

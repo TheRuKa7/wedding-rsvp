@@ -56,6 +56,7 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>
           <AmbientVideo
             src={media.heroVideo}
+            srcDesktop={media.heroVideoDesktop}
             poster="/video/hero-poster.webp"
             className="h-full w-full object-cover"
           />
@@ -79,7 +80,7 @@ export default function Hero() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={media.ganesha} alt="" className="h-14 w-auto opacity-90" aria-hidden />
         ) : (
-          <OmMark className="text-3xl text-saffron sm:text-4xl" />
+          <OmMark className="text-3xl text-saffron-deep sm:text-4xl" />
         )}
         <p className="font-script text-2xl text-red sm:text-3xl">{saveTheDate.invocation}</p>
       </div>
@@ -128,15 +129,6 @@ export default function Hero() {
         className="mt-9 rounded-full bg-red px-9 py-3.5 font-display text-lg tracking-wide text-cream shadow-card transition-transform hover:scale-[1.04]"
       >
         RSVP
-      </a>
-
-      <a
-        data-fade
-        href="#story"
-        className="absolute bottom-8 flex flex-col items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-ink-soft transition-colors hover:text-red"
-      >
-        Scroll
-        <span className="h-10 w-px animate-pulse bg-gold" />
       </a>
     </section>
   );

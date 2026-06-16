@@ -96,6 +96,11 @@ h3,
   animation: foil-shimmer 7s linear infinite;
 }
 
+/* Hero couple names: solid, high-contrast, with a faint regal gold edge. */
+.hero-name {
+  text-shadow: 0 1px 0 rgba(201, 162, 39, 0.35), 0 2px 14px rgba(125, 20, 29, 0.12);
+}
+
 /* Soft cream ground that keeps text legible when it sits over a video. */
 .media-legible {
   position: relative;

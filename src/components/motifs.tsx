@@ -104,6 +104,59 @@ export function Petal({ className, ...props }: SvgProps) {
   );
 }
 
+/** Layered marigold (genda) flower — two petal rings + a seeded centre. */
+export function Marigold({ className, ...props }: SvgProps) {
+  const outer = Array.from({ length: 12 });
+  const inner = Array.from({ length: 10 });
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden {...props}>
+      <g transform="translate(50 50)" stroke="currentColor" strokeWidth="1.2">
+        {outer.map((_, i) => (
+          <ellipse key={`o${i}`} cx="0" cy="-34" rx="7" ry="13" transform={`rotate(${i * 30})`} />
+        ))}
+        {inner.map((_, i) => (
+          <ellipse
+            key={`i${i}`}
+            cx="0"
+            cy="-22"
+            rx="5"
+            ry="10"
+            transform={`rotate(${i * 36 + 18})`}
+            opacity="0.85"
+          />
+        ))}
+        <circle r="9" />
+        <circle r="3.5" opacity="0.7" />
+      </g>
+    </svg>
+  );
+}
+
+/** Ornate corner flourish: a curved vine with a marigold, a chinar leaf and buds. */
+export function CornerFlourish({ className, ...props }: SvgProps) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden {...props}>
+      <g stroke="currentColor" strokeWidth="1.3" strokeLinecap="round">
+        {/* sweeping vine from the corner */}
+        <path d="M4 4 C40 6 70 18 96 44 M4 4 C8 40 22 72 50 98" opacity="0.9" />
+        {/* small buds along the vine */}
+        <path d="M30 9 c6 -5 12 -3 12 4 c0 6 -7 8 -12 4 Z" opacity="0.8" />
+        <path d="M9 30 c-5 6 -3 12 4 12 c6 0 8 -7 4 -12 Z" opacity="0.8" />
+        {/* leaf */}
+        <path d="M60 20 c14 0 22 8 24 22 c-14 0 -24 -8 -24 -22 Z" opacity="0.85" />
+        <path d="M60 20 c2 10 8 16 18 20" opacity="0.6" />
+        {/* marigold tip */}
+        <g transform="translate(96 44)">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <ellipse key={i} cx="0" cy="-9" rx="2.6" ry="5.5" transform={`rotate(${i * 45})`} />
+          ))}
+          <circle r="3" />
+        </g>
+      </g>
+    </svg>
+  );
+}
+
 /** Auspicious Om mark for the invocation. */
 export function OmMark({ className, ...props }: SvgProps) {
   return (

@@ -13,35 +13,34 @@ export default function Hero() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let ctx: gsap.Context;
-    let cleanup = () => {};
-    let cancelled = false;
-
-    // wait for the invitation to be opened, so the name reveal isn't wasted behind the gate
+    let ctx: gsap.Context | undefined;
+    // Reveal only once the invitation opens. immediateRender:false keeps everything
+    // visible until the tween actually runs, so text can never get stuck hidden.
     const stop = onGateOpen(() => {
-      (async () => {
-        const { SplitText } = await import("gsap/SplitText");
-        if (cancelled) return;
-        gsap.registerPlugin(SplitText);
-        ctx = gsap.context(() => {
-          const names = root.current?.querySelectorAll<HTMLElement>("[data-split]") ?? [];
-          const splits = Array.from(names).map((el) => new SplitText(el, { type: "chars" }));
-          const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-          tl.from("[data-fade]", { opacity: 0, y: 18, duration: 0.9, stagger: 0.12 })
-            .from(
-              splits.flatMap((s) => s.chars),
-              { opacity: 0, yPercent: 120, rotateX: -40, duration: 1, stagger: 0.035 },
-              "-=0.4",
-            );
-          cleanup = () => splits.forEach((s) => s.revert());
-        }, root);
-      })();
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        tl.fromTo(
+          "[data-fade]",
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, duration: 0.9, stagger: 0.1, immediateRender: false, clearProps: "opacity,transform" },
+        ).fromTo(
+          "[data-name]",
+          { opacity: 0, y: 40, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.1,
+            stagger: 0.18,
+            immediateRender: false,
+            clearProps: "opacity,transform",
+          },
+          "-=0.5",
+        );
+      }, root);
     });
-
     return () => {
-      cancelled = true;
       stop();
-      cleanup();
       ctx?.revert();
     };
   }, []);
@@ -51,7 +50,6 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 text-center"
     >
-      {/* optional ambient video, behind a cream veil so the names stay crisp */}
       {media.heroVideo && (
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>
           <AmbientVideo
@@ -64,12 +62,11 @@ export default function Hero() {
         </div>
       )}
 
-      {/* soft radial ground so petals read against the cream */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background: media.heroVideo
-            ? "radial-gradient(120% 90% at 50% 0%, rgba(255,249,238,0.6) 0%, rgba(251,244,230,0.35) 45%, rgba(243,231,207,0.2) 100%)"
+            ? "radial-gradient(120% 90% at 50% 0%, rgba(255,249,238,0.55) 0%, rgba(251,244,230,0.3) 45%, rgba(243,231,207,0.15) 100%)"
             : "radial-gradient(120% 90% at 50% 0%, #fff9ee 0%, var(--color-cream) 45%, var(--color-cream-deep) 100%)",
         }}
         aria-hidden
@@ -94,19 +91,17 @@ export default function Hero() {
 
       <h1 className="mt-5 flex flex-col items-center leading-[0.92]">
         <span
-          data-split
-          className="gold-foil font-display text-6xl font-medium sm:text-8xl md:text-9xl"
-          style={{ perspective: 600 }}
+          data-name
+          className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl md:text-9xl"
         >
           {couple.bride.first}
         </span>
-        <span data-fade className="font-script my-1 text-3xl text-red sm:text-4xl">
+        <span data-fade className="font-script my-1 text-3xl text-saffron-deep sm:text-4xl">
           &amp;
         </span>
         <span
-          data-split
-          className="gold-foil font-display text-6xl font-medium sm:text-8xl md:text-9xl"
-          style={{ perspective: 600 }}
+          data-name
+          className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl md:text-9xl"
         >
           {couple.groom.first}
         </span>
@@ -122,10 +117,7 @@ export default function Hero() {
       <p data-fade className="mt-4 font-display text-xl text-red sm:text-2xl">
         {wedding.venue}
       </p>
-      <p
-        data-fade
-        className="mt-1 text-xs uppercase tracking-[0.25em] text-ink-soft sm:text-sm"
-      >
+      <p data-fade className="mt-1 text-xs uppercase tracking-[0.25em] text-ink-soft sm:text-sm">
         {wedding.venueCity}
       </p>
       <p data-fade className="mt-5 max-w-md text-base leading-relaxed text-ink/80">

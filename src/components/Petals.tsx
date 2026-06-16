@@ -1,49 +1,66 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Petal } from "./motifs";
+import { Petal, Marigold, ChinarLeaf } from "./motifs";
+
+type Drift = {
+  left: number;
+  delay: number;
+  duration: number;
+  size: number;
+  hue: string;
+  kind: "petal" | "marigold" | "leaf";
+  sway: number;
+};
 
 /**
- * Ambient drifting marigold petals — purely decorative.
- * Mounts nothing under Reduce Motion. Kept light (count scales down on small screens).
+ * Ambient drifting flowers, petals and leaves. Decorative; mounts nothing under
+ * Reduce Motion. Count scales down on small screens to stay light.
  */
 export default function Petals() {
-  const [petals, setPetals] = useState<
-    { left: number; delay: number; duration: number; size: number; hue: string }[]
-  >([]);
+  const [items, setItems] = useState<Drift[]>([]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const count = window.innerWidth < 640 ? 7 : 14;
-    const hues = ["text-marigold", "text-saffron", "text-gold-soft"];
-    setPetals(
+    const count = window.innerWidth < 640 ? 8 : 16;
+    const hues = ["text-marigold", "text-saffron", "text-gold-soft", "text-pine"];
+    const kinds: Drift["kind"][] = ["petal", "petal", "marigold", "leaf"];
+    setItems(
       Array.from({ length: count }, (_, i) => ({
-        left: (i / count) * 100 + (i % 3) * 4,
-        delay: -(i * 1.7),
-        duration: 14 + (i % 5) * 3,
-        size: 12 + (i % 4) * 5,
-        hue: hues[i % hues.length],
+        left: (i / count) * 100 + (i % 3) * 3,
+        delay: -(i * 1.6),
+        duration: 15 + (i % 5) * 3,
+        size: 12 + (i % 4) * 6,
+        hue: kinds[i % kinds.length] === "leaf" ? "text-pine" : hues[i % hues.length],
+        kind: kinds[i % kinds.length],
+        sway: 24 + (i % 4) * 14,
       })),
     );
   }, []);
 
-  if (petals.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-10 overflow-hidden" aria-hidden>
-      {petals.map((p, i) => (
-        <span
-          key={i}
-          className={`petal-fall absolute -top-10 ${p.hue}`}
-          style={{
-            left: `${p.left}%`,
-            animationDelay: `${p.delay}s`,
-            animationDuration: `${p.duration}s`,
-          }}
-        >
-          <Petal style={{ width: p.size, height: p.size * 1.16 }} />
-        </span>
-      ))}
+      {items.map((p, i) => {
+        const Shape = p.kind === "marigold" ? Marigold : p.kind === "leaf" ? ChinarLeaf : Petal;
+        return (
+          <span
+            key={i}
+            className={`petal-fall absolute -top-12 ${p.hue}`}
+            style={
+              {
+                left: `${p.left}%`,
+                animationDelay: `${p.delay}s`,
+                animationDuration: `${p.duration}s`,
+                "--sway": `${p.sway}px`,
+              } as React.CSSProperties
+            }
+          >
+            <Shape style={{ width: p.size, height: p.size * (p.kind === "petal" ? 1.16 : 1) }} />
+          </span>
+        );
+      })}
       <style jsx>{`
         .petal-fall {
           animation-name: petal-fall;
@@ -57,13 +74,13 @@ export default function Petals() {
             opacity: 0;
           }
           10% {
-            opacity: 0.85;
+            opacity: 0.8;
           }
           90% {
-            opacity: 0.85;
+            opacity: 0.8;
           }
           100% {
-            transform: translateY(108vh) translateX(40px) rotate(420deg);
+            transform: translateY(110vh) translateX(var(--sway)) rotate(460deg);
             opacity: 0;
           }
         }

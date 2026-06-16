@@ -19,7 +19,9 @@ export default function Footer() {
         <p className="mt-4 font-display text-4xl">
           {couple.bride.first} &amp; {couple.groom.first}
         </p>
-        <p className="mt-2 text-sm tracking-[0.2em] text-cream/80">{wedding.dates}</p>
+        <p className="mt-2 text-sm tracking-[0.2em] text-cream/85">{wedding.dates}</p>
+        <p className="mt-3 font-display text-xl text-gold-soft">{wedding.venue}</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-cream/85">{wedding.venueCity}</p>
 
         <MotifDivider className="mt-8 text-gold-soft" />
 

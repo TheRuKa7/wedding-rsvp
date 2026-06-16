@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
-import { ALL_EVENT_SLUGS, couple } from "@/lib/content";
+import { ALL_EVENT_SLUGS, couple, wedding } from "@/lib/content";
 import { submitRsvp, type RsvpInput } from "@/app/actions";
 import { MotifDivider, OmMark, HexagonMonogram } from "./motifs";
 
@@ -279,6 +279,9 @@ export default function Rsvp({ token, party }: { token: string | null; party: Pa
                     Thank you, we have saved your spot
                     {result.count > 1 ? ` for all ${result.count} of you` : ""}. It truly makes
                     us so happy.
+                  </p>
+                  <p className="mt-3 text-sm text-ink/80">
+                    See you at {wedding.venue}, {wedding.venueCity}.
                   </p>
                   <div className="mt-6 rounded-2xl border border-dashed border-gold/60 bg-cream-deep/40 p-5">
                     <p className="font-script text-lg text-saffron-deep">शुभ विवाह</p>

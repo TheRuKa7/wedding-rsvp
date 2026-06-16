@@ -91,7 +91,26 @@ h3,
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  /* faint ink edge so the gold reads on cream and over video */
+  filter: drop-shadow(0 1px 1px rgba(43, 26, 18, 0.28));
   animation: foil-shimmer 7s linear infinite;
+}
+
+/* Soft cream ground that keeps text legible when it sits over a video. */
+.media-legible {
+  position: relative;
+}
+.media-legible::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6%;
+  z-index: -1;
+  background: radial-gradient(
+    60% 55% at 50% 50%,
+    rgba(251, 244, 230, 0.92) 0%,
+    rgba(251, 244, 230, 0.7) 45%,
+    rgba(251, 244, 230, 0) 100%
+  );
 }
 
 @keyframes foil-shimmer {

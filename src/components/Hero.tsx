@@ -60,7 +60,7 @@ export default function Hero() {
             poster="/video/hero-poster.webp"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-cream/70" />
+          <div className="absolute inset-0 bg-cream/82" />
         </div>
       )}
 
@@ -119,8 +119,18 @@ export default function Hero() {
       <p data-fade className="mt-8 font-display text-3xl text-ink sm:text-4xl">
         {wedding.dates}
       </p>
-      <p data-fade className="mt-3 max-w-sm text-base leading-relaxed text-ink/75">
-        {wedding.detailsTeaser}
+      <p data-fade className="mt-4 font-display text-xl text-red sm:text-2xl">
+        {wedding.venue}
+      </p>
+      <p
+        data-fade
+        className="mt-1 text-xs uppercase tracking-[0.25em] text-ink-soft sm:text-sm"
+      >
+        {wedding.venueCity}
+      </p>
+      <p data-fade className="mt-5 max-w-md text-base leading-relaxed text-ink/80">
+        The full itinerary will follow very soon. For now, please save our dates and tell us you
+        can come.
       </p>
 
       <a

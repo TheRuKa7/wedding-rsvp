@@ -62,7 +62,7 @@ export default function InvitationGate() {
             poster="/video/gate-poster.webp"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-cream/75 via-cream/40 to-cream/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-cream/85 via-cream/62 to-cream/88" />
         </div>
       ) : (
         (["left", "right"] as const).map((side) => (
@@ -99,14 +99,14 @@ export default function InvitationGate() {
         <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
 
         <div className="my-7 flex flex-col items-center">
-          <span className="text-[11px] uppercase tracking-[0.3em] text-ink-soft">
+          <span className="text-[11px] uppercase tracking-[0.3em] text-ink/80">
             Together with our families
           </span>
           <h1 className="mt-3 font-display text-5xl text-ink sm:text-6xl">
             {couple.bride.first} <span className="font-script text-red">&amp;</span>{" "}
             {couple.groom.first}
           </h1>
-          <span className="mt-3 text-sm tracking-[0.2em] text-ink-soft">{wedding.dates}</span>
+          <span className="mt-3 text-sm tracking-[0.2em] text-ink/80">{wedding.dates}</span>
         </div>
 
         {phase === "loading" ? (

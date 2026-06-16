@@ -12,8 +12,10 @@ export const couple = {
 export const wedding = {
   dates: "27 & 28 February 2027",
   datesShort: "27–28 Feb 2027",
+  venue: "The Jungle Trail Corbett Resort & Spa",
+  venueCity: "Jim Corbett, Uttarakhand",
   detailsTeaser:
-    "We are still putting everything together. The venue and all the little details will follow very soon. For now, please save our dates and let us know you can come.",
+    "Join us at The Jungle Trail Corbett Resort & Spa in Jim Corbett. The full itinerary will follow very soon. For now, please save our dates and let us know you can come.",
   hashtag: "#StutiWedsRushil",
 } as const;
 
@@ -36,8 +38,8 @@ export const story = {
 export const comingSoon = {
   hindi: "जल्द ही",
   title: "We are still planning the fun parts",
-  body: "The venue, the events and all the little details are coming together beautifully. We will share everything with you soon. The one thing we would love to know now is whether you will be there.",
-  badge: "More details soon",
+  body: "The events, the timings and all the little details are coming together beautifully. We will share the full itinerary with you soon. The one thing we would love to know now is whether you will be there.",
+  badge: "Itinerary coming soon",
 } as const;
 
 export const moments = {

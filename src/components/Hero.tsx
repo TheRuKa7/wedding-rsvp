@@ -71,12 +71,9 @@ export default function Hero() {
         <p className="font-script text-2xl text-red">{saveTheDate.invocation}</p>
       </div>
 
-      <p data-fade className="mt-7 font-display text-2xl text-ink sm:text-3xl">
-        {hosts.parents}
-      </p>
       <p
         data-fade
-        className="mt-1.5 max-w-md text-[12px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-[13px]"
+        className="mt-7 max-w-md text-[12px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-[13px]"
       >
         {hosts.inviteLine}
       </p>
@@ -92,9 +89,6 @@ export default function Hero() {
           {couple.groom.first}
         </span>
       </h1>
-      <p data-fade className="mt-3 text-sm text-ink-soft">
-        son of {hosts.groomParents}
-      </p>
 
       <div data-fade className="mt-6">
         <MotifDivider />

@@ -95,9 +95,8 @@ export default function InvitationGate() {
             <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
 
             <div className="mt-6 flex flex-col items-center">
-              <span className="font-display text-lg text-ink sm:text-xl">{hosts.parents}</span>
-              <span className="mt-1.5 text-[10px] uppercase tracking-[0.26em] text-ink-soft">
-                invite you to the wedding of their daughter
+              <span className="mt-1.5 max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.26em] text-ink-soft">
+                {hosts.gateLine}
               </span>
               <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
                 {couple.bride.first}{" "}
@@ -106,8 +105,7 @@ export default function InvitationGate() {
                 </span>{" "}
                 {couple.groom.first}
               </h1>
-              <span className="mt-2 text-xs text-ink-soft">son of {hosts.groomParents}</span>
-              <span className="mt-4 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
+              <span className="mt-3 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
               <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
                 {wedding.venue}
               </span>

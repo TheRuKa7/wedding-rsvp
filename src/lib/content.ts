@@ -26,11 +26,10 @@ export const saveTheDate = {
   note: "A formal invitation will follow.",
 } as const;
 
-// The invitation is hosted by the bride's parents (this RSVP gathers their guest list).
+// The invitation comes from the couple themselves.
 export const hosts = {
-  parents: "Atul & Rita Suri",
-  inviteLine: "request the pleasure of your company at the wedding of their beloved daughter",
-  groomParents: "Anil & Neetu Kaul",
+  inviteLine: "Together with our families, we joyfully invite you to celebrate our wedding",
+  gateLine: "With love and joy, we invite you to our wedding",
 } as const;
 
 export const rsvp = {

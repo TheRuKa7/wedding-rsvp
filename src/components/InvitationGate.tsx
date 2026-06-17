@@ -93,9 +93,12 @@ export default function InvitationGate() {
               <img src={media.ganesha} alt="" className="h-11 w-auto opacity-90" aria-hidden />
             ) : null}
             <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
+            <span className="mt-3 rounded-full border border-gold/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.3em] text-saffron-deep">
+              {hosts.saveTheDate}
+            </span>
 
-            <div className="mt-6 flex flex-col items-center">
-              <span className="mt-1.5 max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.26em] text-ink-soft">
+            <div className="mt-5 flex flex-col items-center">
+              <span className="max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.26em] text-ink-soft">
                 {hosts.gateLine}
               </span>
               <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
@@ -109,9 +112,13 @@ export default function InvitationGate() {
               <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
                 {wedding.venue}
               </span>
+              <span className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft">
+                {hosts.brideParents} &nbsp;·&nbsp; {hosts.groomParents}
+              </span>
               <span className="mt-4 rounded-full border border-gold/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.28em] text-red">
                 {rsvp.tag}
               </span>
+              <span className="mt-2 text-[10px] italic text-ink-soft">{hosts.formalNote}</span>
             </div>
           </div>
 

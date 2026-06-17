@@ -26,10 +26,15 @@ export const saveTheDate = {
   note: "A formal invitation will follow.",
 } as const;
 
-// The invitation comes from the couple themselves.
+// The invitation comes from the couple themselves, with their families' blessings.
 export const hosts = {
+  saveTheDate: "Save the Date",
   inviteLine: "Together with our families, we joyfully invite you to celebrate our wedding",
   gateLine: "With love and joy, we invite you to our wedding",
+  blessing: "With the blessings of",
+  brideParents: "Rita & Atul Suri",
+  groomParents: "Neetu & Anil Kaul",
+  formalNote: "A formal invitation to follow",
 } as const;
 
 export const rsvp = {

@@ -71,9 +71,16 @@ export default function Hero() {
         <p className="font-script text-2xl text-red">{saveTheDate.invocation}</p>
       </div>
 
+      <span
+        data-fade
+        className="mt-7 rounded-full border border-gold/60 px-5 py-2 text-[11px] uppercase tracking-[0.34em] text-saffron-deep"
+      >
+        {hosts.saveTheDate}
+      </span>
+
       <p
         data-fade
-        className="mt-7 max-w-md text-[12px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-[13px]"
+        className="mt-5 max-w-md text-[12px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-[13px]"
       >
         {hosts.inviteLine}
       </p>
@@ -89,6 +96,14 @@ export default function Hero() {
           {couple.groom.first}
         </span>
       </h1>
+
+      <div data-fade className="mt-5 flex flex-col items-center gap-1">
+        <span className="text-[11px] uppercase tracking-[0.28em] text-ink-soft">
+          {hosts.blessing}
+        </span>
+        <span className="font-display text-lg text-ink sm:text-xl">{hosts.brideParents}</span>
+        <span className="font-display text-lg text-ink sm:text-xl">{hosts.groomParents}</span>
+      </div>
 
       <div data-fade className="mt-6">
         <MotifDivider />
@@ -110,6 +125,7 @@ export default function Hero() {
           {rsvp.tag}
         </span>
         <p className="max-w-sm text-sm leading-relaxed text-ink-soft">{rsvp.note}</p>
+        <p className="mt-1 text-xs italic text-ink-soft">{hosts.formalNote}</p>
       </div>
 
       {/* one photo */}

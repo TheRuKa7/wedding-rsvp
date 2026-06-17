@@ -85,7 +85,7 @@ export default function Hero() {
         <span data-name className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl">
           {couple.bride.first}
         </span>
-        <span data-fade className="font-script my-1 text-2xl text-saffron-deep sm:text-3xl">
+        <span data-fade className="my-1 font-display text-2xl italic text-saffron-deep sm:text-3xl">
           with
         </span>
         <span data-name className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl">

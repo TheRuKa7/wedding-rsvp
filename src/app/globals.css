@@ -104,16 +104,17 @@ h3,
   z-index: 40;
   pointer-events: none;
   border-style: solid;
-  border-width: 20px;
+  border-width: 22px;
   border-image-source: url("/border-mobile.webp");
   border-image-slice: 92;
-  border-image-repeat: stretch;
+  border-image-repeat: round; /* tile the floral edge uniformly — no stretch/compress */
 }
 @media (min-width: 768px) {
   .ornate-frame {
-    border-width: 46px;
+    border-width: 44px;
     border-image-source: url("/border-desktop.webp");
     border-image-slice: 78;
+    border-image-repeat: round;
   }
 }
 

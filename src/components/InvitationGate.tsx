@@ -83,34 +83,38 @@ export default function InvitationGate() {
           playing ? "opacity-0" : "opacity-100"
         }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-cream/88 via-cream/68 to-cream/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/70 via-cream/40 to-cream/75" />
 
         <div className="relative flex flex-col items-center">
-          {media.ganesha ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={media.ganesha} alt="" className="h-12 w-auto opacity-90" aria-hidden />
-          ) : null}
-          <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
+          {/* invitation text on a clean card so it's readable over the envelope */}
+          <div className="flex max-w-sm flex-col items-center rounded-[30px] border border-gold/45 bg-cream/92 px-8 py-9 shadow-card backdrop-blur-md">
+            {media.ganesha ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={media.ganesha} alt="" className="h-11 w-auto opacity-90" aria-hidden />
+            ) : null}
+            <p className="mt-2 font-script text-xl text-red">शुभ विवाह</p>
 
-          <div className="my-7 flex flex-col items-center">
-            <span className="font-display text-lg text-ink sm:text-xl">{hosts.parents}</span>
-            <span className="mt-1 text-[10px] uppercase tracking-[0.28em] text-ink/75">
-              invite you to the wedding of their daughter
-            </span>
-            <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
-              {couple.bride.first}{" "}
-              <span className="font-script text-saffron-deep">with</span> {couple.groom.first}
-            </h1>
-            <span className="mt-2 text-xs text-ink-soft">son of {hosts.groomParents}</span>
-            <span className="mt-3 text-sm tracking-[0.2em] text-ink/80">{wedding.dates}</span>
-            <span className="mt-1 text-xs uppercase tracking-[0.22em] text-ink-soft">
-              {wedding.venue}
-            </span>
+            <div className="mt-6 flex flex-col items-center">
+              <span className="font-display text-lg text-ink sm:text-xl">{hosts.parents}</span>
+              <span className="mt-1.5 text-[10px] uppercase tracking-[0.26em] text-ink-soft">
+                invite you to the wedding of their daughter
+              </span>
+              <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
+                {couple.bride.first}{" "}
+                <span className="font-display italic font-medium text-saffron-deep">with</span>{" "}
+                {couple.groom.first}
+              </h1>
+              <span className="mt-2 text-xs text-ink-soft">son of {hosts.groomParents}</span>
+              <span className="mt-4 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
+              <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
+                {wedding.venue}
+              </span>
+            </div>
           </div>
 
           <button
             onClick={open}
-            className="gate-cta pointer-events-auto group flex flex-col items-center gap-3"
+            className="gate-cta pointer-events-auto group mt-8 flex flex-col items-center gap-3"
           >
             <span className="relative grid h-16 w-16 place-items-center rounded-full border border-gold bg-cream/85 backdrop-blur transition-transform duration-500 group-hover:scale-110">
               <HexagonMonogram className="h-8 w-8 text-gold transition-transform duration-700 group-hover:rotate-180" />

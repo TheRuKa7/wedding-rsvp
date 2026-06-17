@@ -98,22 +98,23 @@ export default function InvitationGate() {
             </span>
 
             <div className="mt-5 flex flex-col items-center">
-              <span className="max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.26em] text-ink-soft">
+              <span className="font-display text-xl text-ink sm:text-2xl">{hosts.brideParents}</span>
+              <span className="mt-2 max-w-[16rem] text-[10px] uppercase leading-relaxed tracking-[0.24em] text-ink-soft">
                 {hosts.gateLine}
               </span>
-              <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
-                {couple.bride.first}{" "}
-                <span className="font-display text-2xl italic text-saffron-deep sm:text-3xl">
-                  with
-                </span>{" "}
-                {couple.groom.first}
+              <h1 className="mt-3 flex flex-col items-center leading-[1.02]">
+                <span className="font-display text-4xl text-red-deep sm:text-5xl">
+                  {couple.bride.first} {couple.bride.last}
+                </span>
+                <span className="my-0.5 font-display text-base italic text-saffron-deep">with</span>
+                <span className="font-display text-4xl text-red-deep sm:text-5xl">
+                  {couple.groom.first} {couple.groom.last}
+                </span>
               </h1>
+              <span className="mt-2 text-[11px] text-ink-soft">{hosts.groomLine}</span>
               <span className="mt-3 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
               <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
                 {wedding.venue}
-              </span>
-              <span className="mt-2 text-[10px] uppercase tracking-[0.22em] text-ink-soft">
-                {hosts.brideParents} &nbsp;·&nbsp; {hosts.groomParents}
               </span>
               <span className="mt-4 rounded-full border border-gold/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.28em] text-red">
                 {rsvp.tag}

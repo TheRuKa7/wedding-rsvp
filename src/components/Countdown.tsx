@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { rsvp, hosts } from "@/lib/content";
 import Reveal from "./Reveal";
 import { MotifDivider } from "./motifs";
 
@@ -38,24 +39,22 @@ export default function Countdown() {
   ];
 
   return (
-    <section className="section-pad relative px-6">
+    <section className="relative px-6 pb-12 pt-2">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-script text-2xl text-saffron-deep">गिनती शुरू</p>
-          <h2 className="mt-2 font-display text-4xl text-red sm:text-5xl">The countdown is on</h2>
-          <p className="mx-auto mt-3 max-w-md text-ink/80">
-            Until we say our vows at The Jungle Trail Corbett Resort &amp; Spa.
+          <p className="text-xs uppercase tracking-[0.3em] text-saffron-deep">
+            Counting down to the celebration
           </p>
         </Reveal>
 
-        <Reveal delay={120}>
-          <div className="mt-9 flex items-stretch justify-center gap-3 sm:gap-5">
+        <Reveal delay={100}>
+          <div className="mt-5 flex items-stretch justify-center gap-3 sm:gap-5">
             {units.map((u) => (
               <div
                 key={u.label}
-                className="min-w-[68px] rounded-2xl border border-gold/40 bg-cream/70 px-3 py-4 shadow-card backdrop-blur-sm sm:min-w-[96px] sm:px-5 sm:py-6"
+                className="min-w-[64px] rounded-2xl border border-gold/40 bg-cream/70 px-3 py-3.5 shadow-card backdrop-blur-sm sm:min-w-[88px] sm:px-5 sm:py-5"
               >
-                <div className="font-display text-4xl tabular-nums text-red-deep sm:text-6xl">
+                <div className="font-display text-3xl tabular-nums text-red-deep sm:text-5xl">
                   {u.value === null ? "––" : String(u.value).padStart(2, "0")}
                 </div>
                 <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-ink-soft sm:text-xs">
@@ -66,8 +65,15 @@ export default function Countdown() {
           </div>
         </Reveal>
 
-        <Reveal delay={200}>
-          <MotifDivider className="mt-10" />
+        <Reveal delay={180}>
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <span className="rounded-full border border-gold/60 px-5 py-2 text-[11px] uppercase tracking-[0.3em] text-red">
+              {rsvp.tag}
+            </span>
+            <p className="max-w-sm text-sm leading-relaxed text-ink-soft">{rsvp.note}</p>
+            <p className="text-xs italic text-ink-soft">{hosts.formalNote}</p>
+          </div>
+          <MotifDivider className="mt-8" />
         </Reveal>
       </div>
     </section>

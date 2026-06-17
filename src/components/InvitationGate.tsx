@@ -101,6 +101,7 @@ export default function InvitationGate() {
               {couple.bride.first}{" "}
               <span className="font-script text-saffron-deep">with</span> {couple.groom.first}
             </h1>
+            <span className="mt-2 text-xs text-ink-soft">son of {hosts.groomParents}</span>
             <span className="mt-3 text-sm tracking-[0.2em] text-ink/80">{wedding.dates}</span>
             <span className="mt-1 text-xs uppercase tracking-[0.22em] text-ink-soft">
               {wedding.venue}

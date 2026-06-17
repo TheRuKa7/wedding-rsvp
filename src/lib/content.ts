@@ -30,6 +30,7 @@ export const saveTheDate = {
 export const hosts = {
   parents: "Atul & Rita Suri",
   inviteLine: "request the pleasure of your company at the wedding of their beloved daughter",
+  groomParents: "Anil & Neetu Kaul",
 } as const;
 
 export const story = {

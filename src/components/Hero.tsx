@@ -39,7 +39,7 @@ export default function Hero() {
   return (
     <section
       ref={root}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 py-14 text-center"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 py-16 text-center"
     >
       {media.heroVideo && (
         <div className="pointer-events-none absolute inset-0 -z-20 overflow-hidden" aria-hidden>
@@ -73,12 +73,12 @@ export default function Hero() {
 
       <span
         data-fade
-        className="mt-4 rounded-full border border-gold/60 px-5 py-1.5 text-[11px] uppercase tracking-[0.34em] text-saffron-deep"
+        className="mt-6 rounded-full border border-gold/60 px-5 py-1.5 text-[11px] uppercase tracking-[0.34em] text-saffron-deep"
       >
         {hosts.saveTheDate}
       </span>
 
-      <p data-fade className="mt-5 font-display text-2xl text-ink sm:text-3xl">
+      <p data-fade className="mt-8 font-display text-2xl text-ink sm:text-3xl">
         {hosts.brideParents}
       </p>
       <p
@@ -89,7 +89,7 @@ export default function Hero() {
       </p>
 
       {/* couple's names with the portrait alongside */}
-      <div className="mt-4 flex items-center justify-center gap-4 sm:gap-7">
+      <div className="mt-6 flex items-center justify-center gap-5 sm:gap-8">
         <div data-fade className="w-24 shrink-0 sm:w-32">
           <div className="overflow-hidden rounded-t-[80px] rounded-b-xl border border-gold/50 p-1 shadow-card">
             <Image
@@ -117,27 +117,27 @@ export default function Hero() {
         </h1>
       </div>
 
-      <p data-fade className="mt-3 text-sm text-ink-soft">
+      <p data-fade className="mt-4 text-sm text-ink-soft">
         {hosts.groomLine}
       </p>
       <p
         data-fade
-        className="mt-2 max-w-sm text-[11px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-xs"
+        className="mt-3 max-w-sm text-[11px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-xs"
       >
         {hosts.joinLine}
       </p>
 
-      <div data-fade className="mt-4">
+      <div data-fade className="mt-7">
         <MotifDivider />
       </div>
 
-      <p data-fade className="mt-4 font-display text-2xl text-ink sm:text-3xl">
+      <p data-fade className="mt-7 font-display text-2xl text-ink sm:text-3xl">
         {wedding.dates}
       </p>
-      <p data-fade className="mt-1.5 font-display text-lg text-red sm:text-xl">
+      <p data-fade className="mt-2 font-display text-lg text-red sm:text-xl">
         {wedding.venue}
       </p>
-      <p data-fade className="mt-1 text-xs uppercase tracking-[0.22em] text-ink-soft">
+      <p data-fade className="mt-1.5 text-xs uppercase tracking-[0.22em] text-ink-soft">
         {wedding.venueCity}
       </p>
     </section>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { rsvp, hosts } from "@/lib/content";
 import Reveal from "./Reveal";
 import { MotifDivider } from "./motifs";
@@ -39,41 +39,41 @@ export default function Countdown() {
   ];
 
   return (
-    <section className="relative px-6 pb-12 pt-2">
+    <section className="relative px-6 pb-16 pt-8">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.3em] text-saffron-deep">
+          <p className="text-[11px] uppercase tracking-[0.32em] text-saffron-deep">
             Counting down to the celebration
           </p>
         </Reveal>
 
         <Reveal delay={100}>
-          <div className="mt-5 flex items-stretch justify-center gap-3 sm:gap-5">
-            {units.map((u) => (
-              <div
-                key={u.label}
-                className="min-w-[64px] rounded-2xl border border-gold/40 bg-cream/70 px-3 py-3.5 shadow-card backdrop-blur-sm sm:min-w-[88px] sm:px-5 sm:py-5"
-              >
-                <div className="font-display text-3xl tabular-nums text-red-deep sm:text-5xl">
-                  {u.value === null ? "––" : String(u.value).padStart(2, "0")}
+          <div className="mt-7 flex items-center justify-center gap-5 sm:gap-9">
+            {units.map((u, i) => (
+              <Fragment key={u.label}>
+                {i > 0 && <span className="h-10 w-px bg-gold/30 sm:h-12" aria-hidden />}
+                <div className="flex min-w-[44px] flex-col items-center sm:min-w-[56px]">
+                  <span className="font-display text-4xl font-medium tabular-nums text-red sm:text-5xl">
+                    {u.value === null ? "––" : String(u.value).padStart(2, "0")}
+                  </span>
+                  <span className="mt-2 text-[9px] uppercase tracking-[0.28em] text-ink-soft sm:text-[10px]">
+                    {u.label}
+                  </span>
                 </div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.25em] text-ink-soft sm:text-xs">
-                  {u.label}
-                </div>
-              </div>
+              </Fragment>
             ))}
           </div>
         </Reveal>
 
         <Reveal delay={180}>
-          <div className="mt-8 flex flex-col items-center gap-2">
+          <div className="mt-12 flex flex-col items-center gap-2.5">
             <span className="rounded-full border border-gold/60 px-5 py-2 text-[11px] uppercase tracking-[0.3em] text-red">
               {rsvp.tag}
             </span>
             <p className="max-w-sm text-sm leading-relaxed text-ink-soft">{rsvp.note}</p>
             <p className="text-xs italic text-ink-soft">{hosts.formalNote}</p>
           </div>
-          <MotifDivider className="mt-8" />
+          <MotifDivider className="mt-10" />
         </Reveal>
       </div>
     </section>

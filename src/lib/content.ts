@@ -33,6 +33,11 @@ export const hosts = {
   groomParents: "Anil & Neetu Kaul",
 } as const;
 
+export const rsvp = {
+  tag: "Kindly RSVP",
+  note: "Please let the family know if you will be able to join us, so we can plan to welcome you.",
+} as const;
+
 export const story = {
   title: "Two families, one celebration",
   hindi: "शुभ विवाह",

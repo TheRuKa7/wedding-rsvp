@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { couple, wedding, saveTheDate, hosts } from "@/lib/content";
+import { couple, wedding, saveTheDate, hosts, rsvp } from "@/lib/content";
 import { onGateOpen } from "@/lib/gate";
 import { media } from "@/lib/media";
 import AmbientVideo from "./AmbientVideo";
@@ -85,7 +85,7 @@ export default function Hero() {
         <span data-name className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl">
           {couple.bride.first}
         </span>
-        <span data-fade className="my-1 font-display text-2xl italic text-saffron-deep sm:text-3xl">
+        <span data-fade className="my-0.5 font-display text-lg italic text-saffron-deep sm:text-xl">
           with
         </span>
         <span data-name className="hero-name font-display text-6xl font-semibold text-red-deep sm:text-8xl">
@@ -109,6 +109,14 @@ export default function Hero() {
       <p data-fade className="mt-1 text-xs uppercase tracking-[0.22em] text-ink-soft">
         {wedding.venueCity}
       </p>
+
+      {/* RSVP indication (no form — guests reply to the family) */}
+      <div data-fade className="mt-7 flex flex-col items-center gap-2">
+        <span className="rounded-full border border-gold/60 px-5 py-2 text-[11px] uppercase tracking-[0.3em] text-red">
+          {rsvp.tag}
+        </span>
+        <p className="max-w-sm text-sm leading-relaxed text-ink-soft">{rsvp.note}</p>
+      </div>
 
       {/* one photo */}
       <div data-fade className="mt-9 w-44 sm:w-52">

@@ -25,9 +25,9 @@ export default function Footer() {
 
         <MotifDivider className="mt-8 text-gold-soft" />
 
-        <p className="mx-auto mt-8 max-w-md text-sm text-cream/75">
-          Travel and stay details will follow with the formal invitation. For anything at all,
-          please reach out to our families directly.
+        <p className="mx-auto mt-8 max-w-md text-sm text-cream/85">
+          <span className="font-medium text-gold-soft">Kindly RSVP.</span> Please let the family
+          know if you can join us. Travel and stay details will follow with the formal invitation.
         </p>
         <p className="mt-6 text-xs uppercase tracking-[0.3em] text-gold-soft">{wedding.hashtag}</p>
       </div>

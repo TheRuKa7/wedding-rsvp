@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { couple, wedding, hosts } from "@/lib/content";
+import { couple, wedding, hosts, rsvp } from "@/lib/content";
 import { markGateOpen } from "@/lib/gate";
 import { media } from "@/lib/media";
 import { HexagonMonogram } from "./motifs";
@@ -101,13 +101,18 @@ export default function InvitationGate() {
               </span>
               <h1 className="mt-3 font-display text-5xl text-red-deep sm:text-6xl">
                 {couple.bride.first}{" "}
-                <span className="font-display italic font-medium text-saffron-deep">with</span>{" "}
+                <span className="font-display text-2xl italic text-saffron-deep sm:text-3xl">
+                  with
+                </span>{" "}
                 {couple.groom.first}
               </h1>
               <span className="mt-2 text-xs text-ink-soft">son of {hosts.groomParents}</span>
               <span className="mt-4 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
               <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
                 {wedding.venue}
+              </span>
+              <span className="mt-4 rounded-full border border-gold/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.28em] text-red">
+                {rsvp.tag}
               </span>
             </div>
           </div>

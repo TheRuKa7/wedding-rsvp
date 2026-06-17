@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import { rsvp, hosts } from "@/lib/content";
 import Reveal from "./Reveal";
 import { MotifDivider } from "./motifs";
 
@@ -66,14 +65,7 @@ export default function Countdown() {
         </Reveal>
 
         <Reveal delay={180}>
-          <div className="mt-12 flex flex-col items-center gap-2.5">
-            <span className="rounded-full border border-gold/60 px-5 py-2 text-[11px] uppercase tracking-[0.3em] text-red">
-              {rsvp.tag}
-            </span>
-            <p className="max-w-sm text-sm leading-relaxed text-ink-soft">{rsvp.note}</p>
-            <p className="text-xs italic text-ink-soft">{hosts.formalNote}</p>
-          </div>
-          <MotifDivider className="mt-10" />
+          <MotifDivider className="mt-12" />
         </Reveal>
       </div>
     </section>

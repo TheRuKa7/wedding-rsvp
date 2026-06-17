@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { couple, wedding, hosts, rsvp } from "@/lib/content";
+import { couple, wedding, hosts } from "@/lib/content";
 import { markGateOpen } from "@/lib/gate";
 import { media } from "@/lib/media";
 import { HexagonMonogram } from "./motifs";
@@ -98,29 +98,29 @@ export default function InvitationGate() {
               {hosts.saveTheDate}
             </span>
 
-            <div className="mt-5 flex flex-col items-center">
-              <span className="font-display text-xl text-ink sm:text-2xl">{hosts.brideParents}</span>
-              <span className="mt-2 max-w-[16rem] text-[10px] uppercase leading-relaxed tracking-[0.24em] text-ink-soft">
-                {hosts.gateLine}
+            <div className="mt-4 flex flex-col items-center">
+              <span className="font-script text-lg text-saffron-deep">{hosts.intro}</span>
+              <span className="mt-1.5 font-display text-xl text-ink sm:text-2xl">
+                {hosts.brideParents}
               </span>
-              <h1 className="mt-3 flex flex-col items-center leading-[1.02]">
+              <span className="mt-1.5 max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.22em] text-ink-soft">
+                {hosts.requestLine}
+              </span>
+              <span className="mt-3 font-display text-2xl text-red sm:text-3xl">{wedding.dates}</span>
+              <span className="mt-3 max-w-[15rem] text-[10px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft">
+                {hosts.forLine}
+              </span>
+              <h1 className="mt-3 flex flex-col items-center leading-[1.0]">
                 <span className="font-display text-4xl text-red-deep sm:text-5xl">
-                  {couple.bride.first} {couple.bride.last}
+                  {couple.bride.first}
                 </span>
                 <span className="my-0.5 font-display text-base italic text-saffron-deep">with</span>
                 <span className="font-display text-4xl text-red-deep sm:text-5xl">
-                  {couple.groom.first} {couple.groom.last}
+                  {couple.groom.first}
                 </span>
               </h1>
               <span className="mt-2 text-[11px] text-ink-soft">{hosts.groomLine}</span>
-              <span className="mt-3 text-sm tracking-[0.18em] text-ink">{wedding.dates}</span>
-              <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft">
-                {wedding.venue}
-              </span>
-              <span className="mt-4 rounded-full border border-gold/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.28em] text-red">
-                {rsvp.tag}
-              </span>
-              <span className="mt-2 text-[10px] italic text-ink-soft">{hosts.formalNote}</span>
+              <span className="mt-4 text-[10px] italic text-ink-soft">{hosts.formalNote}.</span>
             </div>
           </div>
 

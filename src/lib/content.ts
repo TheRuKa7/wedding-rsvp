@@ -26,15 +26,15 @@ export const saveTheDate = {
   note: "A formal invitation will follow.",
 } as const;
 
-// The invitation is hosted by the bride's parents, Rita & Atul Suri.
+// The save-the-date is hosted by the bride's parents, Rita & Atul Suri.
 export const hosts = {
   saveTheDate: "Save the Date",
+  intro: "With joyful hearts,",
   brideParents: "Rita & Atul Suri",
-  inviteLine: "request the pleasure of your company at the wedding of their beloved daughter",
-  gateLine: "request the pleasure of your company at the wedding of their daughter",
+  requestLine: "request you to save the dates",
+  forLine: "for the wedding celebrations of their beloved daughter",
   groomLine: "son of Neetu & Anil Kaul",
-  joinLine: "and warmly invite you to join the celebration",
-  formalNote: "A formal invitation to follow",
+  formalNote: "Formal invitation to follow",
 } as const;
 
 export const rsvp = {

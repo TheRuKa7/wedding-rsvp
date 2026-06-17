@@ -78,19 +78,33 @@ export default function Hero() {
         {hosts.saveTheDate}
       </span>
 
-      <p data-fade className="mt-8 font-display text-2xl text-ink sm:text-3xl">
+      <p data-fade className="mt-7 font-script text-2xl text-saffron-deep">
+        {hosts.intro}
+      </p>
+      <p data-fade className="mt-2 font-display text-2xl text-ink sm:text-3xl">
         {hosts.brideParents}
       </p>
       <p
         data-fade
-        className="mt-2 max-w-sm text-[11px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-xs"
+        className="mt-2 text-[11px] uppercase leading-relaxed tracking-[0.24em] text-ink-soft sm:text-xs"
       >
-        {hosts.inviteLine}
+        {hosts.requestLine}
+      </p>
+
+      <p data-fade className="mt-5 font-display text-3xl text-red sm:text-4xl">
+        {wedding.dates}
+      </p>
+
+      <p
+        data-fade
+        className="mt-5 max-w-xs text-[11px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:max-w-sm sm:text-xs"
+      >
+        {hosts.forLine}
       </p>
 
       {/* couple's names with the portrait alongside */}
       <div className="mt-6 flex items-center justify-center gap-5 sm:gap-8">
-        <div data-fade className="w-24 shrink-0 sm:w-32">
+        <div data-fade className="w-24 shrink-0 sm:w-28">
           <div className="overflow-hidden rounded-t-[80px] rounded-b-xl border border-gold/50 p-1 shadow-card">
             <Image
               src="/ghibli-1.webp"
@@ -98,21 +112,21 @@ export default function Hero() {
               width={896}
               height={1200}
               priority
-              sizes="(min-width: 640px) 128px, 96px"
+              sizes="(min-width: 640px) 112px, 96px"
               className="h-auto w-full rounded-t-[76px] rounded-b-lg object-cover"
             />
           </div>
         </div>
 
         <h1 className="flex flex-col items-start leading-[0.95]">
-          <span data-name className="hero-name font-display text-4xl font-semibold text-red-deep sm:text-6xl">
-            {couple.bride.first} {couple.bride.last}
+          <span data-name className="hero-name font-display text-5xl font-semibold text-red-deep sm:text-7xl">
+            {couple.bride.first}
           </span>
           <span data-fade className="my-0.5 font-display text-base italic text-saffron-deep sm:text-lg">
             with
           </span>
-          <span data-name className="hero-name font-display text-4xl font-semibold text-red-deep sm:text-6xl">
-            {couple.groom.first} {couple.groom.last}
+          <span data-name className="hero-name font-display text-5xl font-semibold text-red-deep sm:text-7xl">
+            {couple.groom.first}
           </span>
         </h1>
       </div>
@@ -120,25 +134,20 @@ export default function Hero() {
       <p data-fade className="mt-4 text-sm text-ink-soft">
         {hosts.groomLine}
       </p>
-      <p
-        data-fade
-        className="mt-3 max-w-sm text-[11px] uppercase leading-relaxed tracking-[0.2em] text-ink-soft sm:text-xs"
-      >
-        {hosts.joinLine}
-      </p>
 
       <div data-fade className="mt-7">
         <MotifDivider />
       </div>
 
-      <p data-fade className="mt-7 font-display text-2xl text-ink sm:text-3xl">
-        {wedding.dates}
-      </p>
-      <p data-fade className="mt-2 font-display text-lg text-red sm:text-xl">
+      <p data-fade className="mt-6 font-display text-lg text-red sm:text-xl">
         {wedding.venue}
       </p>
       <p data-fade className="mt-1.5 text-xs uppercase tracking-[0.22em] text-ink-soft">
         {wedding.venueCity}
+      </p>
+
+      <p data-fade className="mt-7 text-sm italic text-ink-soft">
+        {hosts.formalNote}.
       </p>
     </section>
   );

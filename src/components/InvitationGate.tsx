@@ -42,7 +42,7 @@ export default function InvitationGate() {
     setTimeout(() => {
       setPhase("open");
       document.body.style.overflow = "";
-    }, 500);
+    }, 280);
   }
 
   function open() {
@@ -50,9 +50,10 @@ export default function InvitationGate() {
     const v = videoRef.current;
     if (!v) return finish();
     v.currentTime = 0;
+    v.playbackRate = 1.5; // open a touch quicker
     v.play().catch(() => finish());
     // safety: if the video stalls or "ended" never fires, open anyway
-    setTimeout(finish, 11000);
+    setTimeout(finish, 8000);
   }
 
   if (phase === "open") return null;

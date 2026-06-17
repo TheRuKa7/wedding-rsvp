@@ -22,7 +22,7 @@ export default function Petals() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const count = window.innerWidth < 640 ? 6 : 11;
+    const count = window.innerWidth < 640 ? 5 : 9;
     const hues = ["text-marigold", "text-saffron", "text-gold-soft", "text-pine"];
     const kinds: Drift["kind"][] = ["petal", "petal", "marigold", "leaf"];
     setItems(

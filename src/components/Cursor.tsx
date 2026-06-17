@@ -21,11 +21,23 @@ export default function Cursor() {
       y = innerHeight / 2,
       rx = x,
       ry = y,
-      raf = 0;
+      raf = 0,
+      revealed = false;
+
+    // park both elements at center and keep them hidden until the pointer moves,
+    // so there's no stray dot in the top-left corner on load
+    const center = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+    if (dot.current) dot.current.style.transform = center;
+    if (ring.current) ring.current.style.transform = center;
 
     const move = (e: MouseEvent) => {
       x = e.clientX;
       y = e.clientY;
+      if (!revealed) {
+        revealed = true;
+        if (dot.current) dot.current.style.opacity = "1";
+        if (ring.current) ring.current.style.opacity = "1";
+      }
       if (dot.current) dot.current.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
     };
     const over = (e: MouseEvent) => {
@@ -61,10 +73,12 @@ export default function Cursor() {
       <div
         ref={ring}
         data-hover="0"
+        style={{ opacity: 0 }}
         className="cursor-ring fixed left-0 top-0 h-9 w-9 rounded-full border border-red/60 transition-[width,height,background-color] duration-200"
       />
       <div
         ref={dot}
+        style={{ opacity: 0 }}
         className="cursor-dot fixed left-0 top-0 h-2 w-2 rounded-full bg-red"
       />
     </div>

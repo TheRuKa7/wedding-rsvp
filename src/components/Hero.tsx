@@ -78,20 +78,6 @@ export default function Hero() {
         {hosts.saveTheDate}
       </span>
 
-      {/* one photo, compact, framed */}
-      <div data-fade className="mt-5 w-32 sm:w-36">
-        <div className="overflow-hidden rounded-t-[100px] rounded-b-2xl border border-gold/50 p-1.5 shadow-card">
-          <Image
-            src="/ghibli-1.webp"
-            alt={`${couple.bride.first} with ${couple.groom.first}`}
-            width={896}
-            height={1200}
-            priority
-            className="h-auto w-full rounded-t-[94px] rounded-b-xl object-cover"
-          />
-        </div>
-      </div>
-
       <p data-fade className="mt-5 font-display text-2xl text-ink sm:text-3xl">
         {hosts.brideParents}
       </p>
@@ -102,19 +88,36 @@ export default function Hero() {
         {hosts.inviteLine}
       </p>
 
-      <h1 className="mt-3 flex flex-col items-center leading-[0.95]">
-        <span data-name className="hero-name font-display text-5xl font-semibold text-red-deep sm:text-7xl">
-          {couple.bride.first} {couple.bride.last}
-        </span>
-        <span data-fade className="my-0.5 font-display text-base italic text-saffron-deep sm:text-lg">
-          with
-        </span>
-        <span data-name className="hero-name font-display text-5xl font-semibold text-red-deep sm:text-7xl">
-          {couple.groom.first} {couple.groom.last}
-        </span>
-      </h1>
+      {/* couple's names with the portrait alongside */}
+      <div className="mt-4 flex items-center justify-center gap-4 sm:gap-7">
+        <div data-fade className="w-24 shrink-0 sm:w-32">
+          <div className="overflow-hidden rounded-t-[80px] rounded-b-xl border border-gold/50 p-1 shadow-card">
+            <Image
+              src="/ghibli-1.webp"
+              alt={`${couple.bride.first} with ${couple.groom.first}`}
+              width={896}
+              height={1200}
+              priority
+              sizes="(min-width: 640px) 128px, 96px"
+              className="h-auto w-full rounded-t-[76px] rounded-b-lg object-cover"
+            />
+          </div>
+        </div>
 
-      <p data-fade className="mt-2 text-sm text-ink-soft">
+        <h1 className="flex flex-col items-start leading-[0.95]">
+          <span data-name className="hero-name font-display text-4xl font-semibold text-red-deep sm:text-6xl">
+            {couple.bride.first} {couple.bride.last}
+          </span>
+          <span data-fade className="my-0.5 font-display text-base italic text-saffron-deep sm:text-lg">
+            with
+          </span>
+          <span data-name className="hero-name font-display text-4xl font-semibold text-red-deep sm:text-6xl">
+            {couple.groom.first} {couple.groom.last}
+          </span>
+        </h1>
+      </div>
+
+      <p data-fade className="mt-3 text-sm text-ink-soft">
         {hosts.groomLine}
       </p>
       <p
